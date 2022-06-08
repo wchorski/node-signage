@@ -22,6 +22,7 @@ import { User } from './views/User';
 // import PostCreate from './views/PostCreate';
 // import PostEditor from './views/PostEditor';
 import UserEditor from './views/UserEditor';
+import Player from './views/Player';
 
 const ROLES = {
   'Admin': 5150,
@@ -42,6 +43,7 @@ function App() {
         {/* <Route path="/linkpage" element={<LinkPage />} /> */}
         <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="/slides" element={<Slides />} />
+        <Route path="/player" element={<Player />} />
 
         {/* we want to protect these routes */}
         <Route element={<LoginPersist />}>

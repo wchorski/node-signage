@@ -28,21 +28,21 @@ const Home = (props, req, res) => {
     <>
       <Navbar />
       <section>
-        <h1>Welcome Home</h1>
-        <p><Link to='/login'>Login</Link> or <Link to='/signup'>Signup</Link> to view posts</p>
+        <h1>Node Signage</h1>
+        <p><Link to='/login'>Login</Link> or <Link to='/signup'>Signup</Link></p>
         <br />
-          <span> <a href="https://github.com/wchorski/dgray-MERNstack">
+          <span> <a href="https://github.com/wchorski/node-signage">
                     <ImGithub style={{marginRight: "1rem", fontSize: "60px"}}/>
-                    https://github.com/wchorski/dgray-MERNstack
+                    https://github.com/wchorski/node-signage
           </a></span>
         <br />
         <br />
         {/* <Jokes /> */}
         <br />
 
-        <p className="homies">
+        {/* <p className="homies">
           {homies}
-        </p>
+        </p> */}
 
 
       </section>

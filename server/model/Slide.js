@@ -14,6 +14,23 @@ const slideSchema = new Schema({
     type: String,
     required: false,
   },
+  // img:{
+  //   data: Buffer,
+  //   contentType: String
+  // },
+  imgName: {
+    type: String,
+    default: "none",
+    required: true
+  },
+  imgData: {
+    type: String,
+    required: false
+  },
+  view: {
+    type: Number,
+    default: 0
+  },
   color: {
     type: String,
     required: false,

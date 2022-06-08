@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react"
 import Cookies from 'js-cookie'
 import { RiUser5Line, RiLogoutBoxRLine } from 'react-icons/ri';
+import { AiFillPlaySquare } from 'react-icons/ai'
 import { BiSearchAlt } from 'react-icons/bi';
 import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../context/AuthProvider";
@@ -48,11 +49,30 @@ const Navbar = () => {
                 : null
               }
               <li><Link to="/slides"   > Slides</Link></li>
+              <li><Link to="/player"   > <AiFillPlaySquare /> Player</Link></li>
             </ul>
+            
+            <div className="nav-bg-sub">
+              <nav className="sub">
+                <ul>
+                  {/* <li><input type="text" placeholder="search..."/> <button className="btnSearch"><BiSearchAlt /> </button></li> */}
+                  {username 
+                    ? 
+                      <li className='userCred'><RiUser5Line /> 
+                        <span> {username} </span> 
+                        <button onClick={signOut}><RiLogoutBoxRLine />logout</button>
+                      </li>
+                    : 
+                      <Link to="/login" className="userCred">Login</Link>
+
+                  }
+                </ul>
+              </nav>
+            </div>
           </nav>
         </div>
 
-        <div className="nav-bg-sub">
+        {/* <div className="nav-bg-sub">
           <nav className="sub">
             <ul>
               <li><input type="text" placeholder="search..."/> <button className="btnSearch"><BiSearchAlt /> </button></li>
@@ -68,7 +88,7 @@ const Navbar = () => {
               }
             </ul>
           </nav>
-        </div>
+        </div> */}
       </StyledNavBar>
       
     </>

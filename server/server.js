@@ -46,6 +46,9 @@ app.set('json spaces', 2) //? prettyfiy json in browser
 //middleware for cookies
 app.use(cookieParser());
 
+// file uploader
+app.use('/uploads', express.static('uploads'))
+
 //serve static files
 app.use('/', express.static(path.join(__dirname, '/public')));
 
@@ -55,7 +58,10 @@ app.use('/register',  require('./routes/register'));
 app.use('/auth',      require('./routes/auth'));
 app.use('/refresh',   require('./routes/refresh'));
 app.use('/logout',    require('./routes/logout'));
+
 app.use('/slides',    require('./routes/slides'))
+app.use('/image',     require('./routes/image'));
+
 
 app.use(verifyJWT);
 app.use('/posts',      require('./routes/posts'));

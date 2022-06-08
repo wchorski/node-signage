@@ -1,6 +1,7 @@
 db/mongo-db
 .env
 */build
+server/uploads/*
 
 # Logs
 logs
