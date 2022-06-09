@@ -13,6 +13,9 @@ const Slide = (props) => {
         <p>{props.content}</p>
         <br />
 
+        {/* // TODO display image */}
+        {/* <img src={props.imgData} alt="" /> */}
+
         <ul className='meta-data'>
           <li>{props.author}</li>
           <li>{props.dateMod}</li>

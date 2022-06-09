@@ -1,5 +1,5 @@
-// TODO this tutorial
-// https://www.bezkoder.com/react-dropzone-multiple-files-upload/
+// ! LEGACY code
+// WITHOUT DROPZONE. 
 
 import {React, useState, useEffect} from 'react'
 import {useNavigate, useParams } from 'react-router-dom'

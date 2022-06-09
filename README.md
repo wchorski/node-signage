@@ -56,6 +56,8 @@ Digital Signage on a MERN stack
   ### admin
     + block users from editing certain collections
     + remove bootstrap stylings in 'client/index.html'
+    + set max num of slides per collection
+    + set max file upload limit
     +
   ### server
 

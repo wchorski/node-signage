@@ -1,6 +1,7 @@
 import { rejects } from 'assert';
 import React, { useEffect, useState } from 'react'
 
+import { getFiles, uploadFile } from "../helpers/FileUploadService";
 import axios from '../api/axios'
 
 export interface SingleFileUploadProps{
@@ -20,6 +21,8 @@ export function DropZoneSingle ({
     formData.append('file', file)
 
     console.log(formData);
+
+    
   
     // try{
     //   axios.post(`/slides`, formData, {

@@ -9,14 +9,15 @@ import { FaRegTrashAlt, FaUserAlt, FaSkullCrossbones, FaEject } from 'react-icon
 import {StyledPopUp} from '../styles/popup.styled'
 // import { StyledPost } from '../styles/Post.styled'
 
-import ImageUploader from './ImageUploader'
+// import ImageUploader from './ImageUploader'
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import  axios  from "../api/axios";
 import DefaultImg from '../assets/default-img.jpg';
 import { StyledPost } from '../styles/Post.styled'
 import Navbar from './Navbar'
-import DropZoneForm from '../views/DropZoneForm.tsx'
+// import DropZoneForm from '../views/DropZoneForm.tsx'
 import FileUploader from './FileUploader'
+import { imgDataAppend } from "../helpers/FileUploadService";
 
 // const ROLES = {
 //   'Admin': 5150,
@@ -42,41 +43,48 @@ const SlideCreator = () => {
   }
 
   // * IMAGE ***************************************
-  const previewImage = (e) => {
-    let imageObj = {};
-    let imageFormObj = new FormData();
-    imageFormObj.append("imageName", "multer-image-" + Date.now());
-    imageFormObj.append("imageData", e.target.files[0]);
-    setimgState(URL.createObjectURL(e.target.files[0]))
-  }
+  // const previewImage = (e) => {
+  //   // let imageObj = {};
+  //   let imageFormObj = new FormData();
+  //   imageFormObj.append("imageName", "multer-image-" + Date.now());
+  //   imageFormObj.append("imageData", e.target.files[0]);
+  //   setimgState(URL.createObjectURL(e.target.files[0]))
+  // }
 
-  const uploadImage = () => {
-    let imgUploader = document.getElementById("imgUploader")
-    let imageObj = {};
-    let imageFormObj = new FormData();
-    imageFormObj.append("imageName", "multer-image-" + Date.now());
-    imageFormObj.append("imageData", imgUploader.files[0]);
-    console.log(imageFormObj);
-    setimgState(URL.createObjectURL(imgUploader.files[0]))
-    console.log(imgState);
+  // const uploadImage = () => {
+  //   let imgUploader = document.getElementById("imgUploader")
+  //   // let imageObj = {};
+  //   let imageFormObj = new FormData();
+  //   imageFormObj.append("imageName", "multer-image-" + Date.now());
+  //   imageFormObj.append("imageData", imgUploader.files[0]);
+  //   console.log(imageFormObj);
+  //   setimgState(URL.createObjectURL(imgUploader.files[0]))
+  //   console.log(imgState);
 
-    axios.post(`/image/uploadmulter`, imageFormObj)
-      .then((data) => {
-        if (data.data.success) {
-          alert("Image has been successfully uploaded using multer");
-          makeDefaultImage("multer");
-        }
-      })
-      .catch((err) => {
-        alert("Error while uploading image using multer");
-        makeDefaultImage("multer");
-      });
-  }
+  //   axios.post(`/image/uploadmulter`, imageFormObj)
+  //     .then((data) => {
+  //       if (data.data.success) {
+  //         alert("Image has been successfully uploaded using multer");
+  //         makeDefaultImage("multer");
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       alert("Error while uploading image using multer");
+  //       makeDefaultImage("multer");
+  //     });
+  // }
 
   //* SLIDE *********************************
   const createSlide = (vals) => {
     console.log('**** createSlide vals');
     console.log(vals);
+    imgDataAppend()
+
+    const formDt = new FormData
+
+    formDt.append(vals)
+    // TODO REact.ref of <FileUploader> 's 'selectedFiles[0]'
+    imgDataAppend(formDt, )
     // create image
     // fill in other data
     // push with axios
@@ -84,7 +92,6 @@ const SlideCreator = () => {
       axios.post(`/slides`, vals)
 
     } catch (err) {console.log(err)}
-
   } 
 
   const templateSelection = (val) => {
@@ -129,11 +136,11 @@ const SlideCreator = () => {
     <>
     <Navbar />
 
-      <section>
-        {/* <DropZoneForm /> */}
+      {/* TODO bring back DropZoneForm */}
+      {/* <section>
+        <DropZoneForm />
         <FileUploader />
-        <ImageUploader />
-      </section>
+      </section> */}
 
       <section>
         <Formik
@@ -195,9 +202,7 @@ const SlideCreator = () => {
                 <br />
 
                 <div className='form-item'>
-                  <input type="file" id="imgUploader" className="process__upload-btn" onChange={(e) => previewImage(e)} />
-                  <img src={imgState} alt="upload-image" className="process__image" />
-                  {/* <Field name="image" type="file" /> */}
+                  <FileUploader />
                   {errors.title && touched.title ? (
                     <span className='formErr'>{errors.image}</span>
                   ) : null}
@@ -205,9 +210,9 @@ const SlideCreator = () => {
 
                 <div className="form-item">
                   <Field name="template" as="select" className="template" onChange={(e) => templateSelection(e.target.value)}>
-                    <option value="0">One</option>
-                    <option value="1">Two</option>
-                    <option value="2">Three</option>
+                    <option value="1">Template One</option>
+                    <option value="2">Template Two</option>
+                    <option value="3">Template Three</option>
                   </Field>
                 </div>
                 

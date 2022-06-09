@@ -1,3 +1,6 @@
+// TODO this tutorial
+// https://www.bezkoder.com/react-dropzone-multiple-files-upload/
+
 import React, { useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
 import { getFiles, uploadFile } from "../helpers/FileUploadService";
@@ -17,13 +20,9 @@ const FileUploader = () => {
   const onDrop = (files) => {
     if (files.length > 0) {
       setSelectedFiles(files);
+      setimgPreview(URL.createObjectURL(files[0]))
     }
   };
-
-  // TODO get this working
-  const previewImg = (e) => {
-    setimgPreview(URL.createObjectURL(e.target.files[0]))
-  }
 
   const upload = () => {
     let currentFile = selectedFiles[0];
@@ -40,6 +39,7 @@ const FileUploader = () => {
       })
       .then((files) => {
         setFileInfos(files.data);
+        setimgPreview(DefaultImg)
       })
       .catch(() => {
         setProgress(0);
@@ -73,6 +73,9 @@ const FileUploader = () => {
           </div>
         </div>
       )}
+
+      <img src={imgPreview} alt="upload-image" className="process__image" />
+
       <Dropzone onDrop={onDrop} multiple={false}>
         {({ getRootProps, getInputProps }) => (
           <section>
