@@ -1,3 +1,6 @@
+// TODO this tutorial
+// https://www.bezkoder.com/react-dropzone-multiple-files-upload/
+
 import {React, useState, useEffect} from 'react'
 import {useNavigate, useParams } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik'
@@ -29,12 +32,6 @@ const ImageUploader = () => {
   const [ imgState, setimgState] = useState(DefaultImg)
   const [ issuccess, setissuccess] = useState(false)
 
-  const makeDefaultImage = (uploadType) => {
-    if (uploadType === "multer") {
-      setimgState(DefaultImg)
-    } 
-  }
-
 
   let imageFormObj = {}
 
@@ -62,26 +59,26 @@ const ImageUploader = () => {
   
     imageFormObj = new FormData();
   
-    imageFormObj.append("imageName", "multer-image-" + Date.now());
+    imageFormObj.append("imageName", "multer-image--" + Date.now());
     imageFormObj.append("imageData", imgUploader.files[0]);
     console.log(imageFormObj);
   
     // stores a readable instance of 
     // the image being uploaded using multer
     setimgState(URL.createObjectURL(imgUploader.files[0]))
-    console.log(imgState);
 
 
     axios.post(`/image/uploadmulter`, imageFormObj)
+
       .then((data) => {
         if (data.data.success) {
           alert("Image has been successfully uploaded using multer");
-          makeDefaultImage("multer");
+          setimgState(DefaultImg)
         }
       })
       .catch((err) => {
         alert("Error while uploading image using multer");
-        makeDefaultImage("multer");
+        setimgState(DefaultImg)
       });
 
   }

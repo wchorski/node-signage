@@ -49,9 +49,13 @@ Digital Signage on a MERN stack
     + drag and drop to reorder 
     + shuffle  slides
     + randomize slides
+    + create new blank collection
+    + add multi images as just slides (i.e. powerpoint pressy)
+    + choose the active collection
     +
   ### admin
     + block users from editing certain collections
+    + remove bootstrap stylings in 'client/index.html'
     +
   ### server
 

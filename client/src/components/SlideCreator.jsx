@@ -15,6 +15,8 @@ import  axios  from "../api/axios";
 import DefaultImg from '../assets/default-img.jpg';
 import { StyledPost } from '../styles/Post.styled'
 import Navbar from './Navbar'
+import DropZoneForm from '../views/DropZoneForm.tsx'
+import FileUploader from './FileUploader'
 
 // const ROLES = {
 //   'Admin': 5150,
@@ -126,6 +128,13 @@ const SlideCreator = () => {
   return (
     <>
     <Navbar />
+
+      <section>
+        {/* <DropZoneForm /> */}
+        <FileUploader />
+        <ImageUploader />
+      </section>
+
       <section>
         <Formik
           enableReinitialize

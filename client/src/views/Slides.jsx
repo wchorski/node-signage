@@ -29,7 +29,6 @@ const Slides = () => {
       // });
       const response = await axios.get('/slides')
       setPosts(response.data);
-      console.log(response)
 
     } catch (err) {
       console.error(err);
@@ -57,6 +56,14 @@ const Slides = () => {
 
               <article className='excerpt' key={post._id}>
                 <Slide {...post} />
+
+                <div className="editBtns">
+                  <ul>
+                    <li>Edit</li>
+                    <li>Delete</li>
+                    <li>Select</li>
+                  </ul>
+                </div>
               </article>
           ))}
         </StyledPostsList>

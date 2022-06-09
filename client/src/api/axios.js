@@ -9,7 +9,8 @@ const BASE_URL = (API_IP === 'http://localhost' || API_IP === 'undefined' )
 // const BASE_URL = `${process.env.REACT_APP__API_IP}:${process.env.REACT_APP__API_PORT}`
 
 export default axios.create({
-  baseURL: BASE_URL
+  baseURL: BASE_URL,
+  headers: { 'Content-Type': 'application/json' }
 });
 
 export const axiosPrivate = axios.create({
