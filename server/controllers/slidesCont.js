@@ -9,7 +9,6 @@ exports.getAll = async (req, res) => {
 exports.getOne = async (req, res) => {
   try{
     const slide = await Slide.findById(req.params.id)
-
     res.status(200).json(slide)
 
   } catch (err){
@@ -18,6 +17,9 @@ exports.getOne = async (req, res) => {
   }
 }
 
+// * 
+// * CREATE
+// * 
 exports.create = async (req, res, next) => {
   try{
 
@@ -38,6 +40,8 @@ exports.create = async (req, res, next) => {
     res.status(400).json({status: 'failed POST create',})
   }
 }
+
+
 
 exports.update = async (req, res, next) => {
   try{

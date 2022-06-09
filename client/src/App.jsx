@@ -23,6 +23,7 @@ import { User } from './views/User';
 // import PostEditor from './views/PostEditor';
 import UserEditor from './views/UserEditor';
 import Player from './views/Player';
+import SlideCreator from './components/SlideCreator';
 
 const ROLES = {
   'Admin': 5150,
@@ -43,6 +44,7 @@ function App() {
         {/* <Route path="/linkpage" element={<LinkPage />} /> */}
         <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="/slides" element={<Slides />} />
+        <Route path="/create" element={<SlideCreator />} />
         <Route path="/player" element={<Player />} />
 
         {/* we want to protect these routes */}

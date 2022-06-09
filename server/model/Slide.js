@@ -2,44 +2,40 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const slideSchema = new Schema({
-  title: {
-    type: String,
-    required: true
-  },
   author: {
     type: String,
     required: true
   }, 
+  title: {
+    type: String,
+    required: true
+  },
   content: {
     type: String,
     required: false,
   },
-  // img:{
-  //   data: Buffer,
-  //   contentType: String
-  // },
+  color: {
+    type: String,
+    required: false,
+    default: "#efaf65" //grey
+  },
   imgName: {
     type: String,
     default: "none",
-    required: true
+    required: false
   },
   imgData: {
     type: String,
     required: false
   },
-  view: {
+  template: {
     type: Number,
     default: 0
-  },
-  color: {
-    type: String,
-    required: false,
-    default: "grey"
   },
   collectionName: {
     type: String,
     required: true,
-    default: "nocollection"
+    default: "no_collection"
   },
   dateCreated: {
     type: Date,
@@ -48,6 +44,7 @@ const slideSchema = new Schema({
   },
   dateMod: {
     type: Date,
+    default: Date.now,
   },
 });
 

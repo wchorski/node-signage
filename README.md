@@ -39,13 +39,20 @@ Digital Signage on a MERN stack
     + create new slide editor
     + edit existing slide editor 
     + multiple templates views for slide data
-    + collection drop down to organize slides
+    +
+  ### Slides view
+    + edit buttons each slide on bottom right [ select, edit, delete ] 
+    + hover over to see meta data and edit buttons
+    + make this page view all collections
+    +
+  ### Collection view
+    + drag and drop to reorder 
     + shuffle  slides
     + randomize slides
-
+    +
   ### admin
     + block users from editing certain collections
-
+    +
   ### server
 
 </details>

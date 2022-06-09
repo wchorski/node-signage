@@ -8,7 +8,7 @@ code {
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
 :root{
-  --color-base: #2c232f;
+  --color-base: #2f2623;
   --color-highlight: #efaf65;
   --color-alt: #59d1c3;
   --color-text: hsl(0, 0%, 100%);
@@ -31,7 +31,9 @@ html {
 body {
     /* min-height: 100vh; */
     background-color: var(--color-base);
-    background-image: url("../public/tile/connectwork.webp");
+    background-image: 
+      linear-gradient(0deg, rgba(34, 32, 9, 0.842), rgba(36, 13, 7, 0.863)),
+      url("../public/tile/connectwork.webp");
     background-repeat: repeat;
 
     margin: 0;
@@ -80,6 +82,7 @@ section {
     max-width: var(--width-cont);
     min-height: 400px;
     margin: 0 auto;
+    border-bottom: solid rgba(0, 0, 0, 0.192) 1px ;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

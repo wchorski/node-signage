@@ -3,21 +3,21 @@ import {useNavigate, useParams } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import { FaRegTrashAlt, FaUserAlt, FaSkullCrossbones, FaEject } from 'react-icons/fa'
-import { HiOutlineMail } from 'react-icons/hi'
-import { MdPassword } from 'react-icons/md'
+// import { HiOutlineMail } from 'react-icons/hi'
+// import { MdPassword } from 'react-icons/md'
 
 import {StyledPopUp} from '../styles/popup.styled'
-import { StyledPost } from '../styles/Post.styled'
+// import { StyledPost } from '../styles/Post.styled'
 
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import  axios  from "../api/axios";
 import DefaultImg from '../assets/default-img.jpg';
 
-const ROLES = {
-  'Admin': 5150,
-  'Editor': 1984,
-  'User': 2001,
-}
+// const ROLES = {
+//   'Admin': 5150,
+//   'Editor': 1984,
+//   'User': 2001,
+// }
 
 const ImageUploader = () => {
 
@@ -54,6 +54,23 @@ const ImageUploader = () => {
 
   // upload with multer
   const uploadImage = () => {
+
+    let imgUploader = document.getElementById("imgUploader")
+
+
+    let imageObj = {};
+  
+    imageFormObj = new FormData();
+  
+    imageFormObj.append("imageName", "multer-image-" + Date.now());
+    imageFormObj.append("imageData", imgUploader.files[0]);
+    console.log(imageFormObj);
+  
+    // stores a readable instance of 
+    // the image being uploaded using multer
+    setimgState(URL.createObjectURL(imgUploader.files[0]))
+    console.log(imgState);
+
 
     axios.post(`/image/uploadmulter`, imageFormObj)
       .then((data) => {
@@ -115,7 +132,7 @@ const ImageUploader = () => {
             <Form>
 
             <div className='form-item'>
-              <input type="file" className="process__upload-btn" onChange={(e) => previewImage(e)} />
+              <input type="file" id="imgUploader" className="process__upload-btn" onChange={(e) => previewImage(e)} />
               <img src={imgState} alt="upload-image" className="process__image" />
               {/* <Field name="image" type="file" /> */}
               {errors.title && touched.title ? (

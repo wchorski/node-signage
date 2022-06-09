@@ -2,11 +2,13 @@
 const express = require('express');
 if(process.env.NODE_ENV) {
   // process.env.NODE_ENV === 'undefined'
-  console.log('NODE_ENV is -> ' + process.env.NODE_ENV );
+  console.log('*** NODE_ENV is -> ' + process.env.NODE_ENV );
 } else {
   console.log('NODE_ENV is -> ' + process.env.NODE_ENV );
+  console.log('*** development mode ***');
   require('dotenv').config();
 }
+
 
 const app = express();
 const path = require('path');

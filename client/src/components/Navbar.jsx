@@ -2,10 +2,11 @@ import React, { useState, useEffect, useContext } from "react"
 import Cookies from 'js-cookie'
 import { RiUser5Line, RiLogoutBoxRLine } from 'react-icons/ri';
 import { AiFillPlaySquare } from 'react-icons/ai'
-import { BiSearchAlt } from 'react-icons/bi';
+import { VscDiffAdded } from 'react-icons/vsc'
+// import { BiSearchAlt } from 'react-icons/bi';
 import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../context/AuthProvider";
-import axios from '../api/axios'
+// import axios from '../api/axios'
 
 import { useLogout } from "../hooks/useLogout";
 import logo from '../logo.svg'
@@ -40,16 +41,13 @@ const Navbar = () => {
             </a>
             <ul>
               <li><Link to="/"        > Home</Link></li>
-              {Cookies.get('role') === 'admin' || 'editor' || 'user'
-                ? <li><Link to="/slides"   > Slides</Link></li>
-                : null
-              }
               {Cookies.get('role') === 'admin'
                 ? <li><Link to="/admin"   > Admin</Link></li>
                 : null
               }
-              <li><Link to="/slides"   > Slides</Link></li>
-              <li><Link to="/player"   > <AiFillPlaySquare /> Player</Link></li>
+              <li><Link to="/slides"   >                      Slides </Link></li>
+              <li><Link to="/create"   > <VscDiffAdded />     Create </Link></li>
+              <li><Link to="/player"   > <AiFillPlaySquare /> Player </Link></li>
             </ul>
             
             <div className="nav-bg-sub">
