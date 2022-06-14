@@ -2,6 +2,7 @@ import {React, useState, useEffect} from 'react'
 import {useNavigate, useParams } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
+import Dropzone from "react-dropzone";
 import { FaRegTrashAlt, FaUserAlt, FaSkullCrossbones, FaEject } from 'react-icons/fa'
 // import { HiOutlineMail } from 'react-icons/hi'
 // import { MdPassword } from 'react-icons/md'
@@ -17,6 +18,7 @@ import { StyledPost } from '../styles/Post.styled'
 import Navbar from './Navbar'
 // import DropZoneForm from '../views/DropZoneForm.tsx'
 import FileUploader from './FileUploader'
+import SlideUploader from './SlideUploader'
 import { imgDataAppend } from "../helpers/FileUploadService";
 
 // const ROLES = {
@@ -36,20 +38,54 @@ const SlideCreator = () => {
   const [ imgState, setimgState] = useState(DefaultImg)
   const [ issuccess, setissuccess] = useState(false)
 
+
+  // * ****************
+  // * IMAGE
+  // * ****************
   const makeDefaultImage = (uploadType) => {
     if (uploadType === "multer") {
       setimgState(DefaultImg)
     } 
   }
+  const [selectedFiles, setSelectedFiles] = useState(undefined);
+  const [currentFile, setCurrentFile] = useState(undefined);
+  const [progress, setProgress] = useState(0);
+  const [message, setMessage] = useState("");
+  const [fileInfos, setFileInfos] = useState([]);
+  const [imgPreview, setimgPreview] = useState(DefaultImg)
 
-  // * IMAGE ***************************************
-  // const previewImage = (e) => {
-  //   // let imageObj = {};
-  //   let imageFormObj = new FormData();
-  //   imageFormObj.append("imageName", "multer-image-" + Date.now());
-  //   imageFormObj.append("imageData", e.target.files[0]);
-  //   setimgState(URL.createObjectURL(e.target.files[0]))
-  // }
+  const onDrop = (files) => {
+    if (files.length > 0) {
+      setSelectedFiles(files);
+      setimgPreview(URL.createObjectURL(files[0]))
+      setCurrentFile(files[0])
+    }
+  }
+  // const upload = () => {
+  //   let currentFile = selectedFiles[0];
+  //   setProgress(0);
+  //   setCurrentFile(currentFile);
+
+  //   // * axios call
+  //   // uploadFile(currentFile, (event) => {
+  //   //   setProgress(Math.round((100 * event.loaded) / event.total));
+  //   // })
+  //   //   .then((response) => {
+  //   //     setMessage(response.data.message);
+  //   //     // return getFiles();
+  //   //   })
+  //   //   .then((files) => {
+  //   //     setFileInfos(files.data);
+  //   //     setimgPreview(DefaultImg)
+  //   //   })
+  //   //   .catch(() => {
+  //   //     setProgress(0);
+  //   //     setMessage("Could not upload the file!");
+  //   //     setCurrentFile(undefined);
+  //   //   });
+  //   setSelectedFiles(undefined);
+  // };
+
 
   // const uploadImage = () => {
   //   let imgUploader = document.getElementById("imgUploader")
@@ -57,9 +93,9 @@ const SlideCreator = () => {
   //   let imageFormObj = new FormData();
   //   imageFormObj.append("imageName", "multer-image-" + Date.now());
   //   imageFormObj.append("imageData", imgUploader.files[0]);
-  //   console.log(imageFormObj);
+  //   // console.log(imageFormObj);
   //   setimgState(URL.createObjectURL(imgUploader.files[0]))
-  //   console.log(imgState);
+  //   // console.log(imgState);
 
   //   axios.post(`/image/uploadmulter`, imageFormObj)
   //     .then((data) => {
@@ -74,22 +110,42 @@ const SlideCreator = () => {
   //     });
   // }
 
+
   //* SLIDE *********************************
-  const createSlide = (vals) => {
-    console.log('**** createSlide vals');
-    console.log(vals);
-    imgDataAppend()
+  const createSlide = async (vals) => {
 
-    const formDt = new FormData
+    let formDt = new FormData();
 
-    formDt.append(vals)
-    // TODO REact.ref of <FileUploader> 's 'selectedFiles[0]'
-    imgDataAppend(formDt, )
-    // create image
-    // fill in other data
-    // push with axios
+    if(currentFile){
+      console.log("curFile " + currentFile);
+      setProgress(0);
+      currentFile = selectedFiles[0];
+      setCurrentFile(currentFile);
+
+      formDt.append("imageName", "multer-image-" + Date.now());
+      formDt.append("imageData", currentFile);
+    } else {
+      formDt.append("imageName", "no_img");
+      formDt.append("imageData", "no_img");
+    }
+  
+
+    formDt.append(`author`,         vals.author);
+    formDt.append(`title`,          vals.title);
+    formDt.append(`content`,        vals.content);
+    formDt.append(`template`,       vals.template);
+    formDt.append(`color`,          vals.color);
+    formDt.append(`collectionName`, vals.collectionName);
+
+
     try{
-      axios.post(`/slides`, vals)
+      // axios.post(`/slides`, formDt)
+      const data_1 = await axios.post("/slides", formDt, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        // onUploadProgress,
+      });
 
     } catch (err) {console.log(err)}
   } 
@@ -112,8 +168,8 @@ const SlideCreator = () => {
     author: Yup.string().required('* required!'),
     title: Yup.string(),
     content: Yup.string(),
-    imgName: Yup.string(),
-    imgData: Yup.string(),
+    // imgName: Yup.string(),
+    // imgData: Yup.string(),
     template: Yup.number(),
     color: Yup.string(),
     collectionName: Yup.string(),
@@ -132,31 +188,35 @@ const SlideCreator = () => {
     }
   }
 
+
+  // * ****************
+  // * RETURN
+  // * ****************
   return (
     <>
     <Navbar />
 
       {/* TODO bring back DropZoneForm */}
-      {/* <section>
-        <DropZoneForm />
+      <section>
+        {/* <DropZoneForm /> */}
+        <SlideUploader />
         <FileUploader />
-      </section> */}
+      </section>
 
       <section>
         <Formik
           enableReinitialize
           initialValues={{ 
-            author: '',
-            title: '',
-            content: '',
+            author: 'auth',
+            title: 'titleee',
+            content: 'contenntttt',
             imgName: '',
             imgData: '',
             template: 0,
             color: '#aefb09',
             collectionName: 'no_collection',
-            image: imgState || 'null', 
           }}
-          validationSchema={SlideSchema}
+          // validationSchema={SlideSchema}
           validateOnChange={false} // disable on every keystroke
           onSubmit={(values, actions) => {
             // alert(JSON.stringify(values, null, 2))
@@ -201,12 +261,68 @@ const SlideCreator = () => {
                 </div>
                 <br />
 
-                <div className='form-item'>
+                {/* //* FILE UPLOAD */ }
+                <div>
+                  {currentFile && (
+                    <div className="progress mb-3">
+                      <div
+                        className="progress-bar progress-bar-info progress-bar-striped"
+                        role="progressbar"
+                        aria-valuenow={progress}
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        style={{ width: progress + "%" }}
+                      >
+                        {progress}%
+                      </div>
+                    </div>
+                  )}
+
+
+                  <Dropzone onDrop={onDrop} multiple={false}>
+                    {({ getRootProps, getInputProps }) => (
+                      <>
+                        <div {...getRootProps({ className: "dropzone" })} style={{border: "dashed gray 4px"}}>
+
+                          <img src={imgPreview} alt="upload-image" className="process__image" />  
+                          
+                          <input {...getInputProps()} />
+                          {selectedFiles && selectedFiles[0].name ? (
+                            <div className="selected-file">
+                              {selectedFiles && selectedFiles[0].name}
+                            </div>
+                          ) : (
+                            "Drag and drop file here, or click to select file"
+                            )}
+                        </div>
+
+                      </>
+                    )}
+                  </Dropzone>
+                  <div className="alert alert-light" role="alert">
+                    {message}
+                  </div>
+                  {fileInfos.length > 0 && (
+                    <div className="card">
+                      <div className="card-header">List of Files</div>
+                      <ul className="list-group list-group-flush">
+                        {fileInfos.map((file, index) => (
+                          <li className="list-group-item" key={index}>
+                            <a href={file.url}>{file.name}</a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+                {/* //* end* * * *  * * * * * * * *  */ }
+
+                {/* <div className='form-item'>
                   <FileUploader />
                   {errors.title && touched.title ? (
                     <span className='formErr'>{errors.image}</span>
                   ) : null}
-                </div>
+                </div> */}
 
                 <div className="form-item">
                   <Field name="template" as="select" className="template" onChange={(e) => templateSelection(e.target.value)}>
@@ -241,6 +357,10 @@ const SlideCreator = () => {
             <button className='editBtn' onClick={() => toggleAreYouSure()}> no, I want to keep editing<FaEject /> </button>
           </StyledPopUp>
         )}
+      </section>
+
+      <section>
+      {/* <FileUploader /> */}
       </section>
     </>
   )

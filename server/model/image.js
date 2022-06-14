@@ -14,6 +14,10 @@ var ImageSchema = new Schema({
     imageData: {
         type: String,
         required: true
+    },
+    caption: {
+        type: String,
+        required: false
     }
 });
 

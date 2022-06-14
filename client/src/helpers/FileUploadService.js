@@ -1,7 +1,6 @@
 import axios from '../api/axios'
 
-
-export const uploadFile = async (file, onUploadProgress) => {
+export const uploadFile = async (file, caption, onUploadProgress) => {
 
   let formData = new FormData();
 
@@ -9,7 +8,9 @@ export const uploadFile = async (file, onUploadProgress) => {
 
   formData.append("imageName", "multer-image--" + Date.now());
   formData.append("imageData", file);
+  formData.append("caption", caption)
   console.log(formData);
+  console.log(file);
 
   try {
     const data_1 = await axios.post("/image/uploadmulter", formData, {
@@ -27,15 +28,15 @@ export const uploadFile = async (file, onUploadProgress) => {
 
 };
 
-export const imgDataAppend = async ( formdt, file, onUploadProgress) => {
+// export const imgDataAppend = async ( formdt, file, onUploadProgress) => {
 
-  formdt.append("imageName", "multer-image--" + Date.now());
-  formdt.append("imageData", file);
+//   formdt.append("imageName", "multer-image--" + Date.now());
+//   formdt.append("imageData", file);
 
-  uploadFile(file, onUploadProgress)
+//   uploadFile(file, onUploadProgress)
 
-  return formdt
-}
+//   return formdt
+// }
 
 export const getFiles = () => {
   return axios.get("/files");

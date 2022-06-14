@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 const slideSchema = new Schema({
   author: {
     type: String,
-    required: true
+    required: false
   }, 
   title: {
     type: String,
-    required: true
+    required: false
   },
   content: {
     type: String,
@@ -19,12 +19,12 @@ const slideSchema = new Schema({
     required: false,
     default: "#efaf65" //grey
   },
-  imgName: {
+  imageName: {
     type: String,
     default: "none",
     required: false
   },
-  imgData: {
+  imageData: {
     type: String,
     required: false
   },
@@ -34,7 +34,7 @@ const slideSchema = new Schema({
   },
   collectionName: {
     type: String,
-    required: true,
+    required: false,
     default: "no_collection"
   },
   dateCreated: {

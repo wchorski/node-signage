@@ -15,6 +15,7 @@ const FileUploader = () => {
   const [message, setMessage] = useState("");
   const [fileInfos, setFileInfos] = useState([]);
   const [imgPreview, setimgPreview] = useState(DefaultImg)
+  const [caption, setCaption] = useState(undefined)
 
 
   const onDrop = (files) => {
@@ -28,9 +29,10 @@ const FileUploader = () => {
     let currentFile = selectedFiles[0];
     setProgress(0);
     setCurrentFile(currentFile);
+    setCaption(document.getElementById('captionInput').value)
 
     // * axios call
-    uploadFile(currentFile, (event) => {
+    uploadFile(currentFile, caption, (event) => {
       setProgress(Math.round((100 * event.loaded) / event.total));
     })
       .then((response) => {
@@ -74,12 +76,14 @@ const FileUploader = () => {
         </div>
       )}
 
-      <img src={imgPreview} alt="upload-image" className="process__image" />
 
       <Dropzone onDrop={onDrop} multiple={false}>
         {({ getRootProps, getInputProps }) => (
-          <section>
-            <div {...getRootProps({ className: "dropzone" })}>
+          <>
+            <div {...getRootProps({ className: "dropzone" })} style={{border: "dashed gray 4px"}}>
+
+              <img src={imgPreview} alt="upload-image" className="process__image" />  
+              
               <input {...getInputProps()} />
               {selectedFiles && selectedFiles[0].name ? (
                 <div className="selected-file">
@@ -87,8 +91,9 @@ const FileUploader = () => {
                 </div>
               ) : (
                 "Drag and drop file here, or click to select file"
-              )}
+                )}
             </div>
+            <input id="captionInput" type="text" placeholder="caption..."/>
             <aside className="selected-file-wrapper">
               <button
                 className="btn btn-success"
@@ -98,7 +103,7 @@ const FileUploader = () => {
                 Upload
               </button>
             </aside>
-          </section>
+          </>
         )}
       </Dropzone>
       <div className="alert alert-light" role="alert">

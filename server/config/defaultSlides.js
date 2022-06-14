@@ -18,8 +18,7 @@ const defaultSlides = async () => {
           ...slide
         })
     
-        console.log('*** Created default slide ***');
-        log(slide.title)
+        console.log('* new slide -> ' + slide.title)
     
       } catch (err){
         console.log(err);

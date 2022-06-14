@@ -1,7 +1,8 @@
 var express = require('express');
 var Image = require('../model/image');
-var ImageRouter = express.Router();
 const multer = require('multer');
+var ImageRouter = express.Router();
+const controller = require('../controllers/imageCont')
 
 
 
@@ -10,7 +11,7 @@ const storage = multer.diskStorage({
     cb(null, './uploads/');
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + "--" + file.originalname);
+    cb(null, file.originalname + "--" + Date.now());
   }
 });
 
@@ -26,6 +27,7 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({
   storage: storage,
   limits: {
+    // TODO admin variable
       fileSize: 1024 * 1024 * 5
   },
   fileFilter: fileFilter
@@ -37,24 +39,32 @@ const upload = multer({
     using multer and creates a reference to the 
     file
 */
-ImageRouter.route("/uploadmulter")
-  .post(upload.single('imageData'), (req, res, next) => {
-    console.log(req.body);
-    const newImage = new Image({
-      imageName: req.body.imageName,
-      imageData: req.file.path
-    });
 
-    newImage.save()
-      .then((result) => {
-        console.log(result);
-        res.status(200).json({
-          success: true,
-          document: result
-        });
-      })
-      .catch((err) => next(err));
-  });
+ImageRouter.route("/uploadmulter")
+  .post(controller.create)
+
+
+// ImageRouter.route("/uploadmulter")
+//   .post(upload.single('imageData'), (req, res, next) => {
+//     // console.log(req.body);
+//     // console.log(req.file);
+//     const newImage = new Image({
+//       imageName: req.body.imageName,
+//       imageData: req.file.path,
+//       caption: req.body.caption
+//     });
+
+
+//     newImage.save()
+//       .then((result) => {
+//         console.log(result);
+//         res.status(200).json({
+//           success: true,
+//           document: result
+//         });
+//       })
+//       .catch((err) => next(err));
+//   });
 
 
 

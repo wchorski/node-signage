@@ -1,7 +1,9 @@
 db/mongo-db
 .env
+!.env.dev
+!.env.prod
 */build
-server/uploads/*
+server/uploads/**
 
 # Logs
 logs
