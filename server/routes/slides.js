@@ -12,9 +12,10 @@ const storage = multer.diskStorage({
     cb(null, './uploads/');
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname + "--" + Date.now());
+    cb(null, Date.now() + "--" + file.originalname);
   }
 });
+
 
 const fileFilter = (req, file, cb) => {
   if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
@@ -39,20 +40,21 @@ const upload = multer({
 
 router.route('/')
   .get(controller.getAll)
+
   // .post(controller.create) // TODO why does this not work but below does?
   .post(upload.single('imageData'), (req, res, next) => {
     // console.log(req.body);
     console.log(req.file);
     const newImage = new Slide({
-      author: req.body.author,
-      title: req.body.title,
-      content:  req.body.content,
-      color:  req.body.color,
-      template:  req.body.template,
+      author:          req.body.author,
+      title:           req.body.title,
+      content:         req.body.content,
+      color:           req.body.color,
+      template:        req.body.template,
       collectionName:  req.body.collectionName,
       
-      imageName: req.body.imageName,
-      imageData: req.file.path,
+      imageName:       req.body.imageName,
+      imageData:       req.file.path,
     });
     newImage.save()
       .then((result) => {

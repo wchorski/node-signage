@@ -21,11 +21,11 @@ const SlideUploader = () => {
 
   const [selectedFiles, setSelectedFiles] = useState([]);
   const captionRef = useRef(null)
-  const [currentFile, setCurrentFile] = useState(undefined);
+  // const [currentFile, setCurrentFile] = useState(undefined);
   const [progress, setProgress] = useState(0);
   const [message, setMessage] = useState("");
   const [fileInfos, setFileInfos] = useState([]);
-  const [imgPreview, setimgPreview] = useState(DefaultImg)
+  // const [imgPreview, setimgPreview] = useState(DefaultImg)
 
   
 
@@ -63,7 +63,7 @@ const SlideUploader = () => {
       })
       .then((files) => {
         setFileInfos(files.data);
-        setimgPreview(DefaultImg)
+        // setimgPreview(DefaultImg)
       })
       .catch(() => {
         setProgress(0);

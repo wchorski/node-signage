@@ -48,11 +48,12 @@ app.set('json spaces', 2) //? prettyfiy json in browser
 //middleware for cookies
 app.use(cookieParser());
 
-// file uploader
-app.use('/uploads', express.static('uploads'))
 
 //serve static files
-app.use('/', express.static(path.join(__dirname, '/public')));
+app.use('/',        express.static(path.join(__dirname, '/public')));
+
+// file uploader // TODO protect with JWT
+app.use('/uploads', express.static('uploads'))
 
 // routes
 app.use('/',          require('./routes/root'));

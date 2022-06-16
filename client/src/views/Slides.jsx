@@ -50,6 +50,7 @@ const Slides = () => {
   return (
     <>
       <Navbar />
+
       <section>
         <StyledPostsList>
           {postsArray.slice().reverse().map((post) => (

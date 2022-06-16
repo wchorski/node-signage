@@ -1,5 +1,6 @@
 const Slide = require('../model/Slide');
 const multer = require('multer');
+const fs = require("fs")
 
 // * img processing 
 // * img processing 
@@ -9,7 +10,7 @@ const storage = multer.diskStorage({
     cb(null, './uploads/');
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname + "--" + Date.now());
+    cb(null, Date.now() + "--" + file.originalname);
   }
 });
 
@@ -37,6 +38,8 @@ const upload = multer({
 exports.getAll = async (req, res) => {
   const slides = await Slide.find();
   if (!slides) return res.status(204).json({ 'message': 'No data found' });
+  // console.log(slides[1].imageData);
+  // console.log( res.sendFile(__dirname + "../" + slides[1].imageData) );
   res.json(slides);
 }
 
@@ -59,11 +62,11 @@ exports.create = upload.single('imageData'), (req, res, next) => {
   // console.log(req.body);
   console.log(req.file);
   const newImage = new Slide({
-    author: req.body.author,
-    title: req.body.title,
-    content:  req.body.content,
-    color:  req.body.color,
-    template:  req.body.template,
+    author:          req.body.author,
+    title:           req.body.title,
+    content:         req.body.content,
+    color:           req.body.color,
+    template:        req.body.template,
     collectionName:  req.body.collectionName,
     
     imageName: req.body.imageName,

@@ -5,7 +5,7 @@ import { Form, Formik } from 'formik';
 import React from 'react'
 import { array, object, string } from 'yup';
 
-import DropZoneMulti from '../components/DropZoneMulti'
+// import DropZoneMulti from '../components/DropZoneMulti'
 
 const DropZoneForm = () => {
 
@@ -33,7 +33,7 @@ const DropZoneForm = () => {
           <div className='grid'>
 
             {/* <DropZoneMulti name="files" /> */}
-            <DropZoneMulti />
+            {/* <DropZoneMulti /> */}
 
             <div className='grid'>
               <button
