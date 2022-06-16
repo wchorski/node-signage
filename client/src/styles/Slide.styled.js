@@ -3,10 +3,10 @@ import styled from 'styled-components'
 
 export const StyledSlide = styled.div`
 
-  border-radius: 20px;
-  padding: .3rem;
+  // border-radius: 20px;
+  // padding: .3rem;
   background-color: black;
-  margin: .1rem;
+  // margin: .1rem;
 
   &:hover{
     box-shadow: black 2px 2px 12px;

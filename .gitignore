@@ -4,6 +4,9 @@ db/mongo-db
 !.env.prod
 */build
 server/uploads/**
+!server/uploads/america.jpg
+!server/uploads/australia.jpg
+!server/uploads/vietnam.jpg
 
 # Logs
 logs

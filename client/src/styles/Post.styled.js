@@ -9,6 +9,10 @@ export const StyledPost = styled.div`
   min-height: 30rem;
   position: relative;
 
+  .formErr{
+    color: red;
+  }
+
   .title{
     color: white;
     border: none;
@@ -37,10 +41,19 @@ export const StyledPost = styled.div`
     padding-top: 1rem;
     
   }
+
+  .color{
+    width: 60%;
+    height: 4rem;
+  }
+  .color-label{
+    color: white;
+  }
+
   textarea{
     width: 100%;
     max-width: 100%;
-    min-height: 20rem;
+    min-height: 10rem;
     height: inherit;
     height: 30px;
     resize: vertical;

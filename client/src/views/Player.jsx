@@ -1,9 +1,10 @@
 import React from 'react'
+import SlidePlayer from '../components/SlidePlayer'
 
 const Player = () => {
   return (
     <>
-      <h1>Player.jsx</h1>
+      <SlidePlayer />
     </>
   )
 }

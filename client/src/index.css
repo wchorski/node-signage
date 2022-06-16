@@ -387,11 +387,15 @@ ul{
 .dropzone {
   text-align: center;
   padding: 30px;
+  background-color: #fafafa4c;
   border: 3px dashed #eeeeee;
-  background-color: #fafafa;
   color: #bdbdbd;
   cursor: pointer;
   margin-bottom: 20px;
+}
+.dropzone:hover{
+  background-color: #fafafa7b;
+  border: 3px dotted #5b2e13;
 }
 .selected-file-wrapper {
   text-align: center;
@@ -400,3 +404,60 @@ ul{
   color: #000; 
   font-weight: bold;
 }
+
+
+
+/* interactive slider */
+/* .slider{
+  /* position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center; */
+  /* width: 100vw;
+  height: 100vh; */
+  /* border: dashed white 2px; */
+
+  
+.slider-list{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 100vw;
+  height: 100vh; */
+  /* border: dotted white 2px; */
+}
+
+.right-arrow{
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  font-size: 3rem;
+  color: hsla(0, 0%, 51%, 0.566);
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+.left-arrow{
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  font-size: 3rem;
+  color: hsla(0, 0%, 50%, 0.629);
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+.slide{
+  /* opacity: 1; */
+  transition-duration: 1s ease;
+  transform: scale(1.3);
+  
+}
+.slide.active{
+  /* opacity: 1; */
+  transition-duration: 1s;
+  transform: scale(1.0);
+}
+/* interactive slider END*/

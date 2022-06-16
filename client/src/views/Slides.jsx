@@ -23,13 +23,8 @@ const Slides = () => {
 
   const getPosts = async () => {    
     try {
-      // ! using axios
-      // const response = await axios.get('/slides', {
-      //   signal: controller.signal
-      // });
       const response = await axios.get('/slides')
       setPosts(response.data);
-
     } catch (err) {
       console.error(err);
       navigate('/', { state: { from: location }, replace: true });

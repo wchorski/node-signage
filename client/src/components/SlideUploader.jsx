@@ -81,45 +81,7 @@ const SlideUploader = () => {
     // });
   }, []);
 
-  // * SLIDE * * * * * * * 
-  // const createSlide = async (vals) => {
 
-  //   let formDt = new FormData();
-
-  //   if(currentFile){
-  //     console.log("curFile " + currentFile);
-  //     setProgress(0);
-  //     currentFile = selectedFiles[0];
-  //     setCurrentFile(currentFile);
-
-  //     formDt.append("imageName", currentFile + "--" + Date.now());
-  //     formDt.append("imageData", currentFile);
-  //   } else {
-  //     formDt.append("imageName", "no_img");
-  //     formDt.append("imageData", "no_img");
-  //   }
-  
-
-  //   formDt.append(`author`,         vals.author);
-  //   formDt.append(`title`,          vals.title);
-  //   formDt.append(`content`,        vals.content);
-  //   formDt.append(`template`,       vals.template);
-  //   formDt.append(`color`,          vals.color);
-  //   formDt.append(`collectionName`, vals.collectionName);
-
-
-  //   try{
-  //     // axios.post(`/slides`, formDt)
-  //     const data_1 = await axios.post("/slides", formDt, {
-  //       headers: {
-  //         "Content-Type": "multipart/form-data",
-  //       },
-  //       // onUploadProgress,
-  //     });
-
-  //   } catch (err) {console.log(err)}
-  // } 
-  
   const templateSelection = (val) => {
     console.log(val);
   }
@@ -158,11 +120,9 @@ const SlideUploader = () => {
       <Formik
         enableReinitialize
         initialValues={{ 
-          author: 'auth',
-          title: 'titleee',
-          content: 'contenntttt',
-          // imgName: '',
-          // imgData: '',
+          author: '',
+          title: '',
+          content: '',
           template: 0,
           color: '#aefb09',
           collectionName: 'no_collection',
@@ -211,7 +171,8 @@ const SlideUploader = () => {
               </div>
               <br />
               <div className='form-item'>
-                <Field name="color" type="color" placeholder="color..." className='color'/>
+                <label htmlFor="" className='color-label'>color choice</label>
+                <Field name="color" type="color" placeholder="color..." className='color' />
                 {errors.color && touched.color ? (
                   <span className='formErr'>{errors.color}</span>
                   ) : null}
@@ -219,16 +180,16 @@ const SlideUploader = () => {
               <br />
 
               {/* //* FILE UPLOAD * * * * * * * * * * * * * * * * * * * * * * * *  */ }
-              <section>
-                <h1>dropzone!!!!!!</h1>
-                <div {...getRootProps()} style={{border: "dashed gray 4px"}}>
+              <div className='form-item'>
+                <div {...getRootProps()} style={{border: "dashed gray 4px"}} className='dropzone'>
 
                   <input {...getInputProps()} />
-                    <p>[ drop files here ]</p>
-                </div>
-                  <input ref={captionRef} type="text" placeholder='caption...' />
+                  <p>[ drop image here ]</p>
                   {dropFiles}
-              </section>
+                </div>
+
+                <input ref={captionRef} type="text" placeholder='image caption...' />
+              </div>
               {/* //* FILE UPLOAD End * * * * * * * * * * * * * * * * * * * * * * * * */ }
 
   
