@@ -1,15 +1,17 @@
 <style>
-  span.notice{
+  warning{
     border-left: solid red 3px;
     background-color: #ff400063;
   }
 </style>
 
+<red> red color markdown text</red>
+
 # node-signage
 Digital Signage on a MERN stack
 <br/>
 
-<span class='notice'>This app is terribly optimized, and kinda ugly</span>
+<warning>This app is terribly optimized, and kinda ugly</warning>
 <br/>
 
 # ⚒ Features 
