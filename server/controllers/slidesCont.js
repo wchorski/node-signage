@@ -83,54 +83,6 @@ exports.create = upload.single('imageData'), (req, res, next) => {
     .catch((err) => next(err));
 }
 
-// exports.create = (upload.single('imageData')), async (req, res, next) => {
-
-//   console.log('sildes cont');
-//   console.log(req.body);
-//   console.log(req.file);
-//   console.log('----------------------------');
-//   try{
-//     const newSlide = await Slide.create({
-//       author: req.body.author,
-//       title: req.body.title,
-//       // ...req.body, 
-//       // imageData: req.file.path
-//     })
-
-//     res.status(200).json({
-//       status: 'successful create',
-
-//       data: {
-//         ...newSlide
-//       }
-//     })
-
-//   } catch (err){
-//     console.error(err);
-//     next(err)
-//     res.status(400).json({status: 'failed POST create',})
-//   }
-// }
-
-// upload.single('imageData'), (req, res, next) => {
-//   console.log(req.body);
-//   const newImage = new Image({
-//     imageName: req.body.imageName,
-//     imageData: req.file.path
-//   });
-
-//   newImage.save()
-//     .then((result) => {
-//       console.log(result);
-//       res.status(200).json({
-//         success: true,
-//         document: result
-//       });
-//     })
-//     .catch((err) => next(err));
-// }
-
-
 
 exports.update = async (req, res, next) => {
   try{

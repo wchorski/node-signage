@@ -31,6 +31,22 @@ const Slides = () => {
     }
   }
 
+  const deleteSlide = async (_id) => {
+    console.log(_id);
+    try {
+      axios.delete(`/slides/${_id}`).then(res => {
+        console.log('Deleted!!!', res)
+      })
+
+    } catch (err) {
+      console.log(err)
+    } finally {
+      // TODO CSSTransitions to smoothly show update
+      getPosts();
+      // navigate('/slides')
+    }
+  }
+
   useEffect(() => {
 
     getPosts();
@@ -55,9 +71,13 @@ const Slides = () => {
 
                 <div className="editBtns">
                   <ul>
-                    <li>Edit</li>
-                    <li>Delete</li>
-                    <li>Select</li>
+                    <li><Link to={`/slides/editor/${post._id}`} className='edit'>Edit</Link></li>
+                    <li><button onClick={(e) => deleteSlide(post._id)}> Delete </button></li>
+                    <li>
+                      {/* // TODO screen reader label? */}
+                      <input type="checkbox" id="selectBox" />
+                      {/* <label for="selectBox">Select</label> */}
+                    </li>
                   </ul>
                 </div>
               </article>

@@ -2,15 +2,33 @@ import styled from 'styled-components'
 
 
 export const StyledPost = styled.div`
-  background-color: #131d27;
+  background-color: #9b68316b;
   padding: 1rem;
   margin: .1rem;
   border-radius: .3rem;
   min-height: 30rem;
+  max-width: 40rem;
+  min-width: 30rem;
+  margin: 0 auto;
   position: relative;
+  box-shadow: black 3px 3px 10px;
+
+
+  .form-item{
+    display: flex;
+  }
 
   .formErr{
     color: red;
+  }
+
+  svg{
+    color: white;
+  }
+  .deleteBtn{
+    svg{
+      color: red; 
+    }
   }
 
   .title{
@@ -59,38 +77,42 @@ export const StyledPost = styled.div`
     resize: vertical;
   }
 
-  .editBtns{
-    // outline: solid yellow 3px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-
-    position: block;
-    right: 0;
-    bottom: 0;
-    margin-top: .1rem;
-
-    a{
-      border: solid var(--color-highlight) 1px;
-      padding: .6rem;
-      border-radius: 10px;
-    }
-    
-    button{
-      cursor: pointer;
-      margin-right: 1rem;
-      transition: .2s;
-
-    }
-    .deleteBtn{
-      color: red;
-      background-color: white;
-      
-      &:hover{
-        color: white;
-        background-color: red;
-        border-bottom: red;
-      }
-    }
+  .form-dropzone{
+    flex-direction: column;
   }
+
+  // .editBtns{
+  //   // outline: solid yellow 3px;
+  //   display: flex;
+  //   justify-content: flex-end;
+  //   align-items: center;
+
+  //   position: block;
+  //   right: 0;
+  //   bottom: 0;
+  //   margin-top: .1rem;
+
+  //   a{
+  //     border: solid var(--color-highlight) 1px;
+  //     padding: .6rem;
+  //     border-radius: 10px;
+  //   }
+    
+  //   button{
+  //     cursor: pointer;
+  //     margin-right: 1rem;
+  //     transition: .2s;
+
+  //   }
+  //   .deleteBtn{
+  //     color: red;
+  //     background-color: white;
+      
+  //     &:hover{
+  //       color: white;
+  //       background-color: red;
+  //       border-bottom: red;
+  //     }
+  //   }
+  // }
 `

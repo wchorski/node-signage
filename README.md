@@ -1,5 +1,15 @@
+<style>
+  span.notice{
+    border-left: solid red 3px;
+    background-color: #ff400063;
+  }
+</style>
+
 # node-signage
 Digital Signage on a MERN stack
+<br/>
+
+<span class='notice'>This app is terribly optimized, and kinda ugly</span>
 <br/>
 
 # ⚒ Features 
@@ -45,7 +55,12 @@ Digital Signage on a MERN stack
     + hover over to see meta data and edit buttons
     + make this page view all collections
     +
+  ### Slides creator / editor
+    + image: pic from previously uploaded pics
+    + check to see if pic is already uploaded by name and use that
+    +
   ### Collection view
+    + CRUD collections
     + drag and drop to reorder 
     + shuffle  slides
     + randomize slides

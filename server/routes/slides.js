@@ -69,9 +69,48 @@ router.route('/')
 
 router.route('/:id')
   .get(controller.getOne)
-  // TODO update permission for Editor
-  .patch(controller.update)  
   .delete(controller.delete)
+  .patch(upload.single('imageData'), async (req, res, next) => {
 
-// TODO '/edit/:id' autofill editor with post to be updated
+    const slide = await Slide.findById(req.params.id)
+
+    const filepath = (req.file) ? req.file.path : ''
+
+    if(req.file){
+      Object.assign(slide, {
+        author:          req.body.author,
+        title:           req.body.title,
+        content:         req.body.content,
+        color:           req.body.color,
+        template:        req.body.template,
+        collectionName:  req.body.collectionName,
+        
+        imageName:       req.body.imageName,
+        imageData:       filepath,
+      })
+
+    }else{
+      Object.assign(slide, {
+        author:          req.body.author,
+        title:           req.body.title,
+        content:         req.body.content,
+        color:           req.body.color,
+        template:        req.body.template,
+        collectionName:  req.body.collectionName
+      })
+    }
+
+    
+    slide.save()
+      .then((result) => {
+        console.log(result);
+        res.status(200).json({
+          success: true,
+          document: result
+        });
+      })
+      .catch((err) => next(err));
+  });
+
+
 module.exports = router;

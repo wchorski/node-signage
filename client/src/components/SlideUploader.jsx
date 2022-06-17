@@ -40,7 +40,7 @@ const SlideUploader = () => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({onDrop, multiple: false})
   const dropFiles = selectedFiles?.map((file, i) => (
     <div key={i}>
-      <img src={file.preview} style={{width: "200px"}} alt="" />
+      <img src={file.preview} style={{width: "200px"}} alt="image preview" />
     </div>
   ))
 

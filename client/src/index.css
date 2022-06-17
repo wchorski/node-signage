@@ -121,8 +121,19 @@ textarea {
   z-index: 100;
   cursor: pointer;
 }
-input{
+/* input{
   background-color: rgba(255, 255, 255, 0.786);
+} */
+input:hover, textarea:hover{
+  background-color: rgba(255, 255, 255, 0.221) !important;
+}
+input.color{
+  cursor: pointer;
+  background-color: #ffffff8e;
+}
+input.color:hover{
+  cursor: pointer;
+  background-color: #ffffff;
 }
 
 label,

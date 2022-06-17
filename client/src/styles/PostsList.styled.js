@@ -12,6 +12,7 @@ export const StyledPostsList = styled.div`
   
   .excerpt{
     margin-right: 1rem;
+    margin-bottom: 1rem;
     width: 25rem;
     height: 20rem;
     position: relative;
@@ -38,6 +39,8 @@ export const StyledPostsList = styled.div`
       display: flex;
       flex-direction: column;
       justify-content: center;
+      min-width: 20rem;
+      min-height: 20rem;
     }
 
     h2{
@@ -73,6 +76,47 @@ export const StyledPostsList = styled.div`
     color: var(--color-text);
     margin-top: 1rem;
 
+  }
+
+  .editBtns{
+    z-index: 5;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    ul{
+      display: flex;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+
+      li{
+        padding: 0 .3rem;
+        margin-right: .2rem;
+      }
+
+      .edit{
+        background-color: var(--color-highlight);
+        color: white;
+        border: solid white 2px;
+        border-radius: 10px;
+        padding: 1rem;
+      }
+
+      #selectBox{
+        height: 30px;
+        width: 30px;
+        border: solid var(--color-highlight) 3px;
+      }
+      #selectBox:checked{
+        background-color: green;
+      }
+      #selectBox:after {
+        content: "x";
+        position: absolute;
+        display: none;
+    }
+    }
   }
   
 `

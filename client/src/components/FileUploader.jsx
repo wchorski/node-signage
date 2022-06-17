@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
-import { getFiles, uploadFile } from "../helpers/FileUploadService";
+import { uploadFile } from "../helpers/FileUploadService";
 import DefaultImg from '../assets/default-img.jpg';
 
 

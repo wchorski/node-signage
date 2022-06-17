@@ -24,6 +24,7 @@ import { User } from './views/User';
 import UserEditor from './views/UserEditor';
 import Player from './views/Player';
 import SlideCreator from './components/SlideCreator';
+import SlideEditor from './components/SlideEditor';
 
 const ROLES = {
   'Admin': 5150,
@@ -45,6 +46,7 @@ function App() {
         <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="/slides" element={<Slides />} />
         <Route path="/create" element={<SlideCreator />} />
+        <Route path="/slides/editor/:_id" element={<SlideEditor />} />
         <Route path="/player" element={<Player />} />
 
         {/* we want to protect these routes */}
