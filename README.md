@@ -1,11 +1,8 @@
-<warning> red color markdown text</warning>
-<p class="warning"> red color markdown text</p>
-
 # node-signage
 Digital Signage on a MERN stack
 <br/>
 
-<warning>This app is terribly optimized, and kinda ugly</warning>
+<i>This app is terribly optimized, and kinda ugly</i>
 <br/>
 
 # ⚒ Features 
