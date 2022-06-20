@@ -1,11 +1,5 @@
-<style>
-  warning{
-    border-left: solid red 3px;
-    background-color: #ff400063;
-  }
-</style>
-
-<red> red color markdown text</red>
+<warning> red color markdown text</warning>
+<p class="warning"> red color markdown text</p>
 
 # node-signage
 Digital Signage on a MERN stack
@@ -24,6 +18,7 @@ Digital Signage on a MERN stack
 
 ## 🔓 Permissions
 <i>find default user login info in `./server/config/defaultUsers.json`</i>
+<br/>
 <br/>
 
 # ⚙ Development Setup Checklist
