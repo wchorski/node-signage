@@ -57,7 +57,7 @@ const SlidePlayer = () => {
     await delay(speed)
     nextSlide()
   }
-  // autoAdv(3)
+  autoAdv(5)
 
   return (
     <>
