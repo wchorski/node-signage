@@ -11,6 +11,8 @@ import { getFiles, uploadFile } from "../helpers/SlideUploadService";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import  axios  from "../api/axios";
 import DefaultImg from '../assets/default-img.jpg';
+import Slide from './Slide';
+import { StyledSlidePreview } from '../styles/SlidePreview.styled';
 
 
 
@@ -114,120 +116,133 @@ const SlideUploader = () => {
     }
   }
 
+
+
+
   return (
     <>
-    <section>
-      <Formik
-        enableReinitialize
-        initialValues={{ 
-          author: '',
-          title: '',
-          content: '',
-          template: 0,
-          color: '#aefb09',
-          collectionName: 'no_collection',
-          files: ''
-        }}
-        validationSchema={SlideSchema}
-        validateOnChange={false} // disable on every keystroke
-        onSubmit={(values, actions) => {
-          // alert(JSON.stringify(values, null, 2))
-          // createSlide(values)
+    <div className="slidecreator">
 
-          // console.log(values);
-          // console.log(selectedFiles[0])
-          upload(values)
+      <section>
+        <StyledSlidePreview>
+          <Slide title='This the title' content='hey yall' color='#ef8d32' imageData="uploads\america.jpg"/>
+        </StyledSlidePreview>
+      </section>
 
-          // actions.resetForm()
-        }}
-      >
-        {({ errors, touched, setFieldValue }) => (
-          <>
-          <StyledPost>
-            <Form>
-              <div className='form-item'>
-                <FaUserAlt />
-                <Field name="author" type="text" placeholder="author..." className='author'/>
-                {errors.author && touched.author ? (
-                  <span className='formErr'>{errors.author}</span>
-                  ) : null}
-              </div>
-              <br/>
 
-              <div className='form-item'>
-                <FaUserAlt />
-                <Field name="title" type="text" placeholder="title..." className='title'/>
-                {errors.title && touched.title ? (
-                  <span className='formErr'>{errors.title}</span>
-                  ) : null}
-              </div>
-              <br/>
+      <aside>
+        <Formik
+          enableReinitialize
+          initialValues={{ 
+            author: '',
+            title: '',
+            content: '',
+            template: 0,
+            color: '#aefb09',
+            collectionName: 'no_collection',
+            files: ''
+          }}
+          validationSchema={SlideSchema}
+          validateOnChange={false} // disable on every keystroke
+          onSubmit={(values, actions) => {
+            // alert(JSON.stringify(values, null, 2))
+            // createSlide(values)
 
-              <div className='form-item'>
-                <Field name="content" as="textarea" placeholder="content..." className='content'/>
-                {errors.content && touched.content ? (
-                  <span className='formErr'>{errors.content}</span>
-                  ) : null}
-              </div>
-              <br />
-              <div className='form-item'>
-                <label htmlFor="" className='color-label'>color choice</label>
-                <Field name="color" type="color" placeholder="color..." className='color' />
-                {errors.color && touched.color ? (
-                  <span className='formErr'>{errors.color}</span>
-                  ) : null}
-              </div>
-              <br />
+            // console.log(values);
+            // console.log(selectedFiles[0])
+            upload(values)
 
-              {/* //* FILE UPLOAD * * * * * * * * * * * * * * * * * * * * * * * *  */ }
-              <div className='form-item'>
-                <div {...getRootProps()} style={{border: "dashed gray 4px"}} className='dropzone'>
+            // actions.resetForm()
+          }}
+        >
+          {({ errors, touched, setFieldValue }) => (
+            <>
+            <StyledPost>
+              <Form>
+                <div className='form-item'>
+                  <FaUserAlt />
+                  <Field name="author" type="text" placeholder="author..." className='author'/>
+                  {errors.author && touched.author ? (
+                    <span className='formErr'>{errors.author}</span>
+                    ) : null}
+                </div>
+                <br/>
 
-                  <input {...getInputProps()} />
-                  <p>[ drop image here ]</p>
-                  {dropFiles}
+                <div className='form-item'>
+                  <FaUserAlt />
+                  <Field name="title" type="text" placeholder="title..." className='title'/>
+                  {errors.title && touched.title ? (
+                    <span className='formErr'>{errors.title}</span>
+                    ) : null}
+                </div>
+                <br/>
+
+                <div className='form-item'>
+                  <Field name="content" as="textarea" placeholder="content..." className='content'/>
+                  {errors.content && touched.content ? (
+                    <span className='formErr'>{errors.content}</span>
+                    ) : null}
+                </div>
+                <br />
+                <div className='form-item'>
+                  <label htmlFor="" className='color-label'>color choice</label>
+                  <Field name="color" type="color" placeholder="color..." className='color' />
+                  {errors.color && touched.color ? (
+                    <span className='formErr'>{errors.color}</span>
+                    ) : null}
+                </div>
+                <br />
+
+                {/* //* FILE UPLOAD * * * * * * * * * * * * * * * * * * * * * * * *  */ }
+                <div className='form-item'>
+                  <div {...getRootProps()} style={{border: "dashed gray 4px"}} className='dropzone'>
+
+                    <input {...getInputProps()} />
+                    <p>[ drop image here ]</p>
+                    {dropFiles}
+                  </div>
+
+                  <input ref={captionRef} type="text" placeholder='image caption...' />
+                </div>
+                {/* //* FILE UPLOAD End * * * * * * * * * * * * * * * * * * * * * * * * */ }
+
+    
+
+                <div className="form-item">
+                  <Field name="template" as="select" className="template" onChange={(e) => templateSelection(e.target.value)}>
+                    <option value="1">Template One</option>
+                    <option value="2">Template Two</option>
+                    <option value="3">Template Three</option>
+                  </Field>
+                </div>
+                
+                <div className="form-item">
+                  <Field name="template" as="select" className="template" onChange={(e) => collectionSelection(e.target.value)}>
+                    <option value="col-one">Collection One</option>
+                    <option value="col-two">Collection Two</option>
+                    <option value="col-three">Collection Three</option>
+                  </Field>
                 </div>
 
-                <input ref={captionRef} type="text" placeholder='image caption...' />
-              </div>
-              {/* //* FILE UPLOAD End * * * * * * * * * * * * * * * * * * * * * * * * */ }
+                <div className='editBtns'>
+                  <button className='submitPost' type='submit'>Create Slide</button>
+                  <button className='deleteBtn' type='button' onClick={() => toggleAreYouSure()}> <FaRegTrashAlt /> </button>
+                </div>
+              </Form>
+            </StyledPost>
+            </>
+          )}
+        </Formik>
 
-  
-
-              <div className="form-item">
-                <Field name="template" as="select" className="template" onChange={(e) => templateSelection(e.target.value)}>
-                  <option value="1">Template One</option>
-                  <option value="2">Template Two</option>
-                  <option value="3">Template Three</option>
-                </Field>
-              </div>
-              
-              <div className="form-item">
-                <Field name="template" as="select" className="template" onChange={(e) => collectionSelection(e.target.value)}>
-                  <option value="col-one">Collection One</option>
-                  <option value="col-two">Collection Two</option>
-                  <option value="col-three">Collection Three</option>
-                </Field>
-              </div>
-
-              <div className='editBtns'>
-                <button className='submitPost' type='submit'>Create Slide</button>
-                <button className='deleteBtn' type='button' onClick={() => toggleAreYouSure()}> <FaRegTrashAlt /> </button>
-              </div>
-            </Form>
-          </StyledPost>
-          </>
+        {isAreYouSure && (
+          <StyledPopUp>
+            <h3>Abandon This Edit?</h3>
+            <button className='editBtn' onClick={() => abandonPost()}> yeah, let's ditch this edit <FaSkullCrossbones /> </button>
+            <button className='editBtn' onClick={() => toggleAreYouSure()}> no, I want to keep editing<FaEject /> </button>
+          </StyledPopUp>
         )}
-      </Formik>
-
-      {isAreYouSure && (
-        <StyledPopUp>
-          <h3>Abandon This Edit?</h3>
-          <button className='editBtn' onClick={() => abandonPost()}> yeah, let's ditch this edit <FaSkullCrossbones /> </button>
-          <button className='editBtn' onClick={() => toggleAreYouSure()}> no, I want to keep editing<FaEject /> </button>
-        </StyledPopUp>
-      )}
-    </section>
+      </aside>
+    </div>
     </>
   );
 };

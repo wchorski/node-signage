@@ -472,3 +472,17 @@ ul{
   transform: scale(1.0);
 }
 /* interactive slider END*/
+
+
+.slidecreator{
+  border: dotted white 1px;
+  display: flex;
+}
+
+.slidecreator .styledSlide{
+  flex-grow: 4;
+  background-color: #2f2623;
+}
+.slidecreator .title {
+
+}

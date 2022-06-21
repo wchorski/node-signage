@@ -8,7 +8,7 @@ export const StyledPost = styled.div`
   border-radius: .3rem;
   min-height: 30rem;
   max-width: 40rem;
-  min-width: 30rem;
+  // min-width: 10rem;
   margin: 0 auto;
   position: relative;
   box-shadow: black 3px 3px 10px;

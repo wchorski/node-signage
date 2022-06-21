@@ -61,55 +61,6 @@ const SlideCreator = () => {
       setCurrentFile(files[0])
     }
   }
-  // const upload = () => {
-  //   let currentFile = selectedFiles[0];
-  //   setProgress(0);
-  //   setCurrentFile(currentFile);
-
-  //   // * axios call
-  //   // uploadFile(currentFile, (event) => {
-  //   //   setProgress(Math.round((100 * event.loaded) / event.total));
-  //   // })
-  //   //   .then((response) => {
-  //   //     setMessage(response.data.message);
-  //   //     // return getFiles();
-  //   //   })
-  //   //   .then((files) => {
-  //   //     setFileInfos(files.data);
-  //   //     setimgPreview(DefaultImg)
-  //   //   })
-  //   //   .catch(() => {
-  //   //     setProgress(0);
-  //   //     setMessage("Could not upload the file!");
-  //   //     setCurrentFile(undefined);
-  //   //   });
-  //   setSelectedFiles(undefined);
-  // };
-
-
-  // const uploadImage = () => {
-  //   let imgUploader = document.getElementById("imgUploader")
-  //   // let imageObj = {};
-  //   let imageFormObj = new FormData();
-  //   imageFormObj.append("imageName", "multer-image-" + Date.now());
-  //   imageFormObj.append("imageData", imgUploader.files[0]);
-  //   // console.log(imageFormObj);
-  //   setimgState(URL.createObjectURL(imgUploader.files[0]))
-  //   // console.log(imgState);
-
-  //   axios.post(`/image/uploadmulter`, imageFormObj)
-  //     .then((data) => {
-  //       if (data.data.success) {
-  //         alert("Image has been successfully uploaded using multer");
-  //         makeDefaultImage("multer");
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       alert("Error while uploading image using multer");
-  //       makeDefaultImage("multer");
-  //     });
-  // }
-
 
   //* SLIDE *********************************
   const createSlide = async (vals) => {
