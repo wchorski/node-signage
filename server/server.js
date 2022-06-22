@@ -47,7 +47,6 @@ app.set('json spaces', 2) //? prettyfiy json in browser
 //middleware for cookies
 app.use(cookieParser());
 
-
 //serve static files
 app.use('/',        express.static(path.join(__dirname, '/public')));
 

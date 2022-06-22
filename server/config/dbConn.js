@@ -7,8 +7,10 @@ const PORT = process.env.DATABASE_PORT
 const COLLECTION = process.env.MONGODB_COLLECTION
 
 const mongoURL = (USER === 'localhost' || USER === 'undefined' ) 
-  ? `mongodb://localhost:${PORT}/${COLLECTION}`
+  ? `mongodb://${URI}:${PORT}/${COLLECTION}`
   : `mongodb://${USER}:${PWD}@${URI}:${PORT}/${COLLECTION}?authSource=admin`
+
+console.log(mongoURL);
 
 const connectDB = async () => {
   try {

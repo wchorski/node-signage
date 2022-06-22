@@ -32,37 +32,37 @@ export const StyledPlayer = styled.div`
     }
   }
 
-  .template{
+  // .template{
 
-    &--0{
-      .styledSlide{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
+  //   &--0{
+  //     .styledSlide{
+  //       display: flex;
+  //       flex-direction: column;
+  //       justify-content: center;
+  //     }
 
-      h2{
-        font-size: 5rem;
-        color: white;
-        text-shadow: 6px 6px 13px #000000;
+  //     h2{
+  //       font-size: 5rem;
+  //       color: white;
+  //       text-shadow: 6px 6px 13px #000000;
 
-        text-align: center;
-        margin-bottom: 2rem;
-      }
+  //       text-align: center;
+  //       margin-bottom: 2rem;
+  //     }
 
-      .slide-content{
-        background-color: #ffffffcc;
-        min-height: 8rem;
+  //     .slide-content{
+  //       background-color: #ffffffcc;
+  //       min-height: 8rem;
 
-        p {
-          color: black;
-          font-size: 2rem;
+  //       p {
+  //         color: black;
+  //         font-size: 2rem;
   
-          text-align: center;
-          padding: 4rem 4rem;
-        }
-      }
-    }
+  //         text-align: center;
+  //         padding: 4rem 4rem;
+  //       }
+  //     }
+  //   }
   }
 
 `

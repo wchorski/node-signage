@@ -13,8 +13,8 @@ export const StyledPostsList = styled.div`
   .excerpt{
     margin-right: 1rem;
     margin-bottom: 1rem;
-    width: 25rem;
-    height: 20rem;
+    // width: 25rem;
+    // height: 20rem;
     position: relative;
 
     .meta-data{

@@ -25,13 +25,14 @@ const Slide = (props) => {
   return (
     <>
     <StyledSlide 
-      className='styledSlide'
+      className={`styledSlide template--${props.template}`}
       style={{  backgroundColor: props.color, 
         backgroundImage: `url(${imgBG_sani})`,
-        backgroundSize: "cover", 
+        backgroundSize: "contain", 
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',}}
     >
+      <div className={`template--${props.template}`}>
         <h2>{props.title}</h2> 
 
         {props.content != '' && 
@@ -42,8 +43,7 @@ const Slide = (props) => {
             <br />
           </>
         }
-
-        {/* <img src={imgBG} alt={props.imageName} /> */}
+      </div>
 
         <ul className='meta-data'>
           <li>{props.author}</li>

@@ -5,7 +5,7 @@ export const StyledSlidePreview = styled.div`
 
   // border-radius: 20px;
   // padding: .3rem;
-  background-color: black;
+  background-color: grey;
   // margin: .1rem;
 
   

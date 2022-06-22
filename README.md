@@ -19,16 +19,16 @@ Digital Signage on a MERN stack
 <br/>
 
 # ⚙ Development Setup Checklist
-0. i run <a href="https://www.mongodb.com/try/download/community">MongoDB Community Edition</a> locally on my machine and tap into it with <a href="https://www.mongodb.com/try/download/compass">MongoDB Compass</a> 
-0. add in `require('dotenv').config();` at the top of `./server/server.js`
+0. i run <a href="https://www.mongodb.com/try/download/community">MongoDB Community Edition</a> locally on my machine and tap into it with <a href="https://www.mongodb.com/try/download/compass">MongoDB Compass</a>. <a href="https://nodejs.org/en/">Node.js</a> for the app. 
+0. `cd ./server` `cp .env.dev .env` | `npm i`
+0. `cd ./client` `cp .env.dev .env` | `npm i`
 0. allow multiple frontend domains in `allowedOrigins.js` (docker compose env variable gets added automatically)
-0. node dev environment `cd ./server` `npm run dev` will kick up express and react at the same time.
-0. you could run a dev environment in docker with `dev.sh` but I don't recommend it.
-0. all dev env variables live in `./server/.env` & `./client/.env` (production variables are setup via compose)
+0. node dev environment `cd ./server` `npm run dev` will kick up express and react at the same time with <a href="https://www.npmjs.com/package/concurrently">concurrently</a> .
+
 <br/>
 
 # ⚙ Production Setup Checklist
-0. comment out `require('dotenv').config();` at the top of `./server/server.js`
+0. `cd ./client` `cp .env.prod .env`
 0. change `./client/.env` with prod variables
 0. edit all `environment:` variables in `compose.yml`
 0. `docker compose up -d --build`
@@ -62,6 +62,8 @@ Digital Signage on a MERN stack
     + add multi images as just slides (i.e. powerpoint pressy)
     + choose the active collection
     +
+  ### Slide player
+    + need to fix auto play time when also allowing manual advancing
   ### admin
     + block users from editing certain collections
     + remove bootstrap stylings in 'client/index.html'

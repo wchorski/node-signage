@@ -116,7 +116,20 @@ const SlideUploader = () => {
     }
   }
 
+  const [titleState, settitleState] = useState('')
+  const [contentState, setcontentState] = useState('')
 
+  const onFormChange = (input, val) => {
+    switch(input){
+      case 'title':
+        settitleState(val)
+        break;
+      case 'content':
+        console.log(val);
+        setcontentState(val)
+        break;
+    }
+  }
 
 
   return (
@@ -124,9 +137,16 @@ const SlideUploader = () => {
     <div className="slidecreator">
 
       <section>
-        <StyledSlidePreview>
-          <Slide title='This the title' content='hey yall' color='#ef8d32' imageData="uploads\america.jpg"/>
-        </StyledSlidePreview>
+        {/* <StyledSlidePreview> */}
+          <Slide 
+            title={titleState} 
+            content={contentState}
+            color='#ef8d32' 
+            imageData="uploads\vietnam.jpg" 
+            template="0"
+            dateCreated={Date.now()}
+          />
+        {/* </StyledSlidePreview> */}
       </section>
 
 
@@ -155,17 +175,18 @@ const SlideUploader = () => {
             // actions.resetForm()
           }}
         >
-          {({ errors, touched, setFieldValue }) => (
+          {({ errors, touched, setFieldValue, values }) => (
             <>
             <StyledPost>
               <Form>
                 <div className='form-item'>
                   <FaUserAlt />
-                  <Field name="author" type="text" placeholder="author..." className='author'/>
+                  <Field name="author" type="text" placeholder="author..." className='author' />
                   {errors.author && touched.author ? (
                     <span className='formErr'>{errors.author}</span>
                     ) : null}
                 </div>
+                
                 <br/>
 
                 <div className='form-item'>
@@ -175,6 +196,7 @@ const SlideUploader = () => {
                     <span className='formErr'>{errors.title}</span>
                     ) : null}
                 </div>
+                {onFormChange('title', values.title)}
                 <br/>
 
                 <div className='form-item'>
@@ -183,7 +205,9 @@ const SlideUploader = () => {
                     <span className='formErr'>{errors.content}</span>
                     ) : null}
                 </div>
+                {onFormChange('content', values.content)}
                 <br />
+
                 <div className='form-item'>
                   <label htmlFor="" className='color-label'>color choice</label>
                   <Field name="color" type="color" placeholder="color..." className='color' />
