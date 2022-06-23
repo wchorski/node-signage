@@ -18,6 +18,7 @@ import { StyledSlidePreview } from '../styles/SlidePreview.styled';
 
 const SlideUploader = () => {
 
+  const dateToday = Date.now();
   const navigate = useNavigate();
   const controller = new AbortController();
 
@@ -33,11 +34,13 @@ const SlideUploader = () => {
 
 
   const onDrop = useCallback(acceptedFiles => {
+
     setSelectedFiles(acceptedFiles.map(file => 
       Object.assign(file, {
-        preview: URL.createObjectURL(file)
-      })
+        preview: URL.createObjectURL(file),
+      }),
     ))
+    console.log('selectedFiles: ' + URL.createObjectURL(selectedFiles[0]));
   }, [])
   const { getRootProps, getInputProps, isDragActive } = useDropzone({onDrop, multiple: false})
   const dropFiles = selectedFiles?.map((file, i) => (
@@ -55,8 +58,8 @@ const SlideUploader = () => {
 
     // * axios call
     uploadFile(selectedFiles[0], values, (event) => {
-      console.log(event);
-      console.log(progress);
+      // console.log(event);
+      // console.log(progress);
       setProgress(Math.round((100 * event.loaded) / event.total));
     })
       .then((response) => {
@@ -81,6 +84,7 @@ const SlideUploader = () => {
     // getFiles().then((response) => {
     //   setFileInfos(response.data);
     // });
+    
   }, []);
 
 
@@ -118,6 +122,9 @@ const SlideUploader = () => {
 
   const [titleState, settitleState] = useState('')
   const [contentState, setcontentState] = useState('')
+  const [colorState, setColorState] = useState('')
+  const [templateState, settemplateState] = useState('')
+  const [collectionState, setcollectionState] = useState('')
 
   const onFormChange = (input, val) => {
     switch(input){
@@ -125,8 +132,20 @@ const SlideUploader = () => {
         settitleState(val)
         break;
       case 'content':
-        console.log(val);
+        // console.log(val);
         setcontentState(val)
+        break;
+      case 'color':
+        // console.log(val);
+        setColorState(val)
+        break;
+      case 'template':
+        // console.log(val);
+        settemplateState(val)
+        break;
+      case 'collectionName':
+        // console.log(val);
+        setcollectionState(val)
         break;
     }
   }
@@ -141,10 +160,12 @@ const SlideUploader = () => {
           <Slide 
             title={titleState} 
             content={contentState}
-            color='#ef8d32' 
-            imageData="uploads\vietnam.jpg" 
-            template="0"
-            dateCreated={Date.now()}
+            color={colorState} 
+            imageData={(selectedFiles[0]) ? URL.createObjectURL(selectedFiles[0]) : ''}
+            template={templateState}
+            collectionName={collectionState}
+            dateCreated={'2022-02-01T08:00:00.000Z'}
+            dateMod={dateToday}
           />
         {/* </StyledSlidePreview> */}
       </section>
@@ -215,10 +236,11 @@ const SlideUploader = () => {
                     <span className='formErr'>{errors.color}</span>
                     ) : null}
                 </div>
+                {onFormChange('color', values.color)}
                 <br />
 
                 {/* //* FILE UPLOAD * * * * * * * * * * * * * * * * * * * * * * * *  */ }
-                <div className='form-item'>
+                <div className='form-item' style={{flexDirection: "column"}}>
                   <div {...getRootProps()} style={{border: "dashed gray 4px"}} className='dropzone'>
 
                     <input {...getInputProps()} />
@@ -233,19 +255,21 @@ const SlideUploader = () => {
     
 
                 <div className="form-item">
-                  <Field name="template" as="select" className="template" onChange={(e) => templateSelection(e.target.value)}>
+                  <Field name="template" as="select" className="template" >
                     <option value="1">Template One</option>
                     <option value="2">Template Two</option>
                     <option value="3">Template Three</option>
                   </Field>
+                  {onFormChange('template', values.template)}
                 </div>
                 
                 <div className="form-item">
-                  <Field name="template" as="select" className="template" onChange={(e) => collectionSelection(e.target.value)}>
+                  <Field name="collectionName" as="select" className="template">
                     <option value="col-one">Collection One</option>
                     <option value="col-two">Collection Two</option>
                     <option value="col-three">Collection Three</option>
                   </Field>
+                  {onFormChange('collectionName', values.collectionName)}
                 </div>
 
                 <div className='editBtns'>

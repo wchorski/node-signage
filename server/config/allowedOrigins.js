@@ -8,7 +8,9 @@ const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:3001',
   'http://10.42.1.57:3000',
-  'http://10.42.1.57:3001'
+  'http://10.42.1.57:3001',
+  'http://10.42.1.70:3000',
+  'http://10.42.1.70:3001'
 ];
 
 module.exports = allowedOrigins;

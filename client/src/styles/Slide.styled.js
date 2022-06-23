@@ -4,28 +4,36 @@ import styled from 'styled-components'
 export const StyledSlide = styled.div`
 
   // border-radius: 20px;
-  // padding: .3rem;
+  // padding: 3rem;
   background-color: grey;
   // margin: .1rem;
 
   aspect-ratio: 16 / 9;
   display: flex;
   width: 100%;
+  position: relative
 
   &:hover{
     box-shadow: black 2px 2px 12px;
   }
 
-  &.meta-data{
+  .meta-data{
     font-size: 10px;
     color: rgba(255, 255, 255, 0.514);
     margin: 0;
     padding: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    &:hover{
+      background-color: black;
+    }
   }
 
   .template{
 
-    &--0{
+    &--1{
       width: 100%;
       display: flex;
       flex-direction: column;

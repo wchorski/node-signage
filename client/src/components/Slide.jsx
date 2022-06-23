@@ -19,18 +19,29 @@ const formatDate = (inputDate) => {
 
 const Slide = (props) => {
 
-  const imgBG = `${API_IP}:${API_PORT}/` + props.imageData
-  const imgBG_sani = imgBG.replace(/\\/g, '/')
+  let imgBG = props.imageData;
+
+  if(props.imageData && props.imageData[0] === 'u'){
+    imgBG = `${API_IP}:${API_PORT}/` + props.imageData
+    imgBG = imgBG.replace(/\\/g, '/')
+  } 
+
+
 
   return (
     <>
     <StyledSlide 
       className={`styledSlide template--${props.template}`}
-      style={{  backgroundColor: props.color, 
-        backgroundImage: `url(${imgBG_sani})`,
-        backgroundSize: "contain", 
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',}}
+      style={
+        {  
+          backgroundColor: props.color, 
+          backgroundImage: `url(${imgBG})`,
+          backgroundSize: "contain", 
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }
+        
+      }
     >
       <div className={`template--${props.template}`}>
         <h2>{props.title}</h2> 
