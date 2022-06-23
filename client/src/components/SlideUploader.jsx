@@ -4,6 +4,7 @@ import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import Dropzone, {useDropzone} from "react-dropzone";
 import { FaRegTrashAlt, FaUserAlt, FaSkullCrossbones, FaEject } from 'react-icons/fa'
+import { TbSelect } from 'react-icons/tb'
 
 import {StyledPopUp} from '../styles/popup.styled'
 import { StyledPost } from '../styles/Post.styled'
@@ -178,7 +179,7 @@ const SlideUploader = () => {
             author: '',
             title: '',
             content: '',
-            template: 0,
+            template: 1,
             color: '#aefb09',
             collectionName: 'no_collection',
             files: ''
@@ -240,7 +241,7 @@ const SlideUploader = () => {
                 <br />
 
                 {/* //* FILE UPLOAD * * * * * * * * * * * * * * * * * * * * * * * *  */ }
-                <div className='form-item' style={{flexDirection: "column"}}>
+                <div className='form-item dropzone-cont' style={{flexDirection: "column"}}>
                   <div {...getRootProps()} style={{border: "dashed gray 4px"}} className='dropzone'>
 
                     <input {...getInputProps()} />
@@ -254,8 +255,9 @@ const SlideUploader = () => {
 
     
 
-                <div className="form-item">
-                  <Field name="template" as="select" className="template" >
+                <div className="form-item select-cont">
+                  <TbSelect />
+                  <Field name="template" as="select" className="form-selection template" >
                     <option value="1">Template One</option>
                     <option value="2">Template Two</option>
                     <option value="3">Template Three</option>
@@ -263,8 +265,9 @@ const SlideUploader = () => {
                   {onFormChange('template', values.template)}
                 </div>
                 
-                <div className="form-item">
-                  <Field name="collectionName" as="select" className="template">
+                <div className="form-item select-cont">
+                  <TbSelect />
+                  <Field name="collectionName" as="select" className="form-selection template">
                     <option value="col-one">Collection One</option>
                     <option value="col-two">Collection Two</option>
                     <option value="col-three">Collection Three</option>

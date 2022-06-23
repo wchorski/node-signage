@@ -1,4 +1,4 @@
-# node-signage
+# node-signage ♐ 
 Digital Signage on a MERN stack
 <br/>
 
@@ -24,10 +24,9 @@ Digital Signage on a MERN stack
 0. `cd ./client` `cp .env.dev .env` | `npm i`
 0. allow multiple frontend domains in `allowedOrigins.js` (docker compose env variable gets added automatically)
 0. node dev environment `cd ./server` `npm run dev` will kick up express and react at the same time with <a href="https://www.npmjs.com/package/concurrently">concurrently</a> .
-
 <br/>
 
-# ⚙ Production Setup Checklist
+# 🏭 Production Setup Checklist
 0. `cd ./client` `cp .env.prod .env`
 0. change `./client/.env` with prod variables
 0. edit all `environment:` variables in `compose.yml`
@@ -40,30 +39,32 @@ Digital Signage on a MERN stack
   <summary>List 1</summary>
 
   ### slides
-    + create new slide editor
+    + ✅ create new slide editor
     + edit existing slide editor 
     + multiple templates views for slide data
     +
   ### Slides view
     + edit buttons each slide on bottom right [ select, edit, delete ] 
-    + hover over to see meta data and edit buttons
     + make this page view all collections
-    +
+    + select and batch delete
   ### Slides creator / editor
     + image: pic from previously uploaded pics
     + check to see if pic is already uploaded by name and use that
+    + extra option to load "baked slides" (like an exported Power Point)
     +
   ### Collection view
     + CRUD collections
     + drag and drop to reorder 
-    + shuffle  slides
+    + shuffle slides
     + randomize slides
     + create new blank collection
     + add multi images as just slides (i.e. powerpoint pressy)
     + choose the active collection
-    +
+    + 
   ### Slide player
     + need to fix auto play time when also allowing manual advancing
+    + advance with arrow keys
+    + 
   ### admin
     + block users from editing certain collections
     + remove bootstrap stylings in 'client/index.html'
@@ -71,5 +72,9 @@ Digital Signage on a MERN stack
     + set max file upload limit
     +
   ### server
+
+  ### frontend
+    + dynamically create *Players* for each active collection
+    +
 
 </details>

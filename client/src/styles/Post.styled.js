@@ -81,38 +81,50 @@ export const StyledPost = styled.div`
     flex-direction: column;
   }
 
-  // .editBtns{
-  //   // outline: solid yellow 3px;
-  //   display: flex;
-  //   justify-content: flex-end;
-  //   align-items: center;
+  .select-cont{
+    position: relative;
+    width: 300px;
+    margin-bottom: 1rem;
 
-  //   position: block;
-  //   right: 0;
-  //   bottom: 0;
-  //   margin-top: .1rem;
+    svg{
+      position: absolute;
+      top: 25%;
+      right: 0;
+      font-size: 30px;
+      // border: 1px solid #565656;
+      // background: #0e7b53;
+      color: #fff;
+      // padding: 11px 15px;
+      margin-right: 15px;
+    }
 
-  //   a{
-  //     border: solid var(--color-highlight) 1px;
-  //     padding: .6rem;
-  //     border-radius: 10px;
-  //   }
-    
-  //   button{
-  //     cursor: pointer;
-  //     margin-right: 1rem;
-  //     transition: .2s;
+    select{
+      appearance: none;
+      background: #ffffff52;
+      color: #fff;
+      width: 100%;
+      padding: 10px 20px;
+      font-size: 22px;
 
-  //   }
-  //   .deleteBtn{
-  //     color: red;
-  //     background-color: white;
-      
-  //     &:hover{
-  //       color: white;
-  //       background-color: red;
-  //       border-bottom: red;
-  //     }
-  //   }
-  // }
+      &:hover{
+        background: var(--color-highlight);
+      }
+
+      option{
+        color: #000;
+        padding: 5px 10px;
+
+        &:hover{
+          background-color: var(--color-highlight);
+        }
+      }
+    }
+
+  }
+
+  .dropzone-cont{
+    box-shadow: black 1px 1px 2px;
+    padding: .4rem;
+    margin-bottom: 1rem;
+  }
 `
