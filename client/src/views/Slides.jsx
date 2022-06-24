@@ -9,6 +9,7 @@ import SlideCreator from '../components/SlideCreator'
 
 import axios from '../api/axios'
 import { StyledPostsList } from '../styles/PostsList.styled'
+import CollectionPreview from '../components/CollectionPreview'
 // import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
 const Slides = () => {
@@ -61,6 +62,9 @@ const Slides = () => {
   return (
     <>
       <Navbar />
+      <section>
+        <CollectionPreview />
+      </section>
 
       <section>
         <StyledPostsList>
