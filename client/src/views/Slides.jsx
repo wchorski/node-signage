@@ -59,11 +59,27 @@ const Slides = () => {
     }
   }, [])
 
+  const getUniqueCats = (array) => {
+    return [...new Set(array.map(q => q.collectionName))]
+  }
+
   return (
     <>
       <Navbar />
-      <section>
-        <CollectionPreview />
+      <section className='collections'>
+
+        {getUniqueCats(postsArray).map(collection => {
+          {console.log(collection);}
+          <CollectionPreview collectionName={collection} />
+        })}
+
+        {/* {postsArray.map(post => (
+            <CollectionPreview collectionName={post.collectionName} />
+        ))}
+         */}
+        {/* <CollectionPreview collectionName="us_holidays"/>
+        <CollectionPreview collectionName="australian_holidays"/>
+        <CollectionPreview collectionName="vietnam_holidays"/> */}
       </section>
 
       <section>

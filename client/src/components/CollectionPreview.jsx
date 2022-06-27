@@ -12,7 +12,7 @@ import { StyledPostsList } from '../styles/PostsList.styled'
 import { StyledCollectionPreview } from '../styles/CollectionPreview.styled'
 // import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
-const CollectionPreview = () => {
+const CollectionPreview = (props) => {
 
   // const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
@@ -47,13 +47,14 @@ const CollectionPreview = () => {
   return (
     <>
       <StyledCollectionPreview>
-        <div>CollectionPreview</div>
-
-        <div className="collectionBlock">
-          {slidesState.filter(slide => slide.collectionName === 'australian_holidays').slice(0,4).reverse().map((slide) => (
-            <Slide {...slide} />
-          ))}
-        </div>
+        <h3>{props.collectionName}</h3>
+        <Link to={`/slides/${props.collectionName}`}>
+          <div className="collectionBlock">
+            {slidesState.filter(slide => slide.collectionName === `${props.collectionName}`).slice(0,4).reverse().map((slide) => (
+              <Slide {...slide} key={slide._id}/>
+            ))}
+          </div>
+        </Link>
 
       </StyledCollectionPreview>
     </>
