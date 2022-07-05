@@ -50,7 +50,7 @@ const CollectionPreview = (props) => {
         <h3>{props.collectionName}</h3>
         <Link to={`/slides/${props.collectionName}`}>
           <div className="collectionBlock">
-            {slidesState.filter(slide => slide.collectionName === `${props.collectionName}`).slice(0,4).reverse().map((slide) => (
+            {slidesState.filter(slide => slide.collectionName === `${props.collectionName}`).reverse().slice(0,4).map((slide) => (
               <Slide {...slide} key={slide._id}/>
             ))}
           </div>

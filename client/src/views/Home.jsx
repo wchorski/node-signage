@@ -1,33 +1,24 @@
 import { useState, useEffect } from "react";
-
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { ImHome3, ImGithub } from 'react-icons/im'
 
 import Navbar from "../components/Navbar";
-// import { Jokes } from "../components/Jokes";
+import Slide from "../components/Slide";
+import axios from '../api/axios'
 
 const Home = (props, req, res) => {
 
-  const [homies, setHomies] = useState([])
+  const navigate = useNavigate();
+  const location = useLocation();
+  const controller = new AbortController();
 
 
-  useEffect(() => {
-
-    let homieArray = []
-
-    for(let i=0; i<500; i++){(
-      homieArray.push(<ImHome3 />)
-    )}
-
-    setHomies(homieArray)
-
-
-  }, [])
 
   return (
     <>
       <Navbar />
       <section>
+
         <h1>Node Signage</h1>
         <p><Link to='/login'>Login</Link> or <Link to='/signup'>Signup</Link></p>
         <br />
@@ -36,13 +27,10 @@ const Home = (props, req, res) => {
                     https://github.com/wchorski/node-signage
           </a></span>
         <br />
-        <br />
-        {/* <Jokes /> */}
-        <br />
+        
 
-        {/* <p className="homies">
-          {homies}
-        </p> */}
+        
+
 
 
       </section>

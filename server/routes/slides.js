@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const multer = require('multer');
 const controller = require('../controllers/slidesCont');
+const multer = require('multer');
 const Slide = require('../model/Slide');
 // const ROLES_LIST = require('../config/roles_list');
 // const verifyRoles = require('../middleware/verifyRoles');

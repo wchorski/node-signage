@@ -25,6 +25,7 @@ import UserEditor from './views/UserEditor';
 import Player from './views/Player';
 import SlideCreator from './components/SlideCreator';
 import SlideEditor from './components/SlideEditor';
+import Collection from './views/Collection';
 
 const ROLES = {
   'Admin': 5150,
@@ -47,6 +48,7 @@ function App() {
         <Route path="/slides" element={<Slides />} />
         <Route path="/create" element={<SlideCreator />} />
         <Route path="/slides/editor/:_id" element={<SlideEditor />} />
+        <Route path="/slides/:collectionName" element={<Collection />} />
         <Route path="/player" element={<Player />} />
 
         {/* we want to protect these routes */}

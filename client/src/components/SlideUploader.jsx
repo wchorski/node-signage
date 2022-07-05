@@ -55,6 +55,8 @@ const SlideUploader = () => {
     let currentFile = selectedFiles[0];
     setProgress(0);
     // setCurrentFile(currentFile);
+
+    console.log(values);
  
 
     // * axios call
@@ -265,6 +267,7 @@ const SlideUploader = () => {
                   {onFormChange('template', values.template)}
                 </div>
                 
+                {/* //TODO map over collectionName in db  */}
                 <div className="form-item select-cont">
                   <TbSelect />
                   <Field name="collectionName" as="select" className="form-selection template">

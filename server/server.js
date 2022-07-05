@@ -47,7 +47,6 @@ app.set('json spaces', 2) //? prettyfiy json in browser
 //middleware for cookies
 app.use(cookieParser());
 
-
 //serve static files
 app.use('/',        express.static(path.join(__dirname, '/public')));
 
@@ -61,8 +60,9 @@ app.use('/auth',      require('./routes/auth'));
 app.use('/refresh',   require('./routes/refresh'));
 app.use('/logout',    require('./routes/logout'));
 
-app.use('/slides',    require('./routes/slides'))
-app.use('/image',     require('./routes/image'));
+app.use('/slides',            require('./routes/slides'))
+app.use('/collectionname',    require('./routes/collectionname'))
+app.use('/image',             require('./routes/image'));
 
 
 app.use(verifyJWT);
@@ -98,3 +98,7 @@ defaultAdmin()
 // * default slides if no slides are found in db
 const defaultSlides = require('./config/defaultSlides')
 defaultSlides()
+
+// * default collections 
+const defaultCollections = require('./config/defaultCollections')
+defaultCollections()

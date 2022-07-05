@@ -44,6 +44,11 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+h1, h2, h3, svg, p{
+  color: white;
+}
+
+
 .body-container{
   width: 100%;
 }
@@ -146,13 +151,16 @@ button,
   padding: 0.5rem;
   margin-bottom: 1rem;
   cursor: pointer;
-  border-bottom: solid var(--color-highlight) 3px;
+  border: solid var(--color-highlight) 3px;
+  background: rgb(0,0,0);
+background: linear-gradient(300deg, rgb(208, 208, 208) 0%, rgb(239, 239, 239) 51%, rgba(255,255,255,1) 100%);
 }
 button:hover,
 .process__upload-btn:hover{
   background-color: var(--color-highlight);
-  color: white;
-  border-bottom: solid black 3px;
+  color: var(--color-highlight);
+  border: solid black 3px;
+  /* border-bottom: solid var(--color-highlight) 3px; */
 }
 
 li {
@@ -313,6 +321,13 @@ ul{
   }
 }
 
+.btn{
+  background-color: white;
+  max-width: 15rem;
+  margin-bottom: 1rem;
+  border: solid var(--color-highlight) 2px;
+  border-bottom: solid var(--color-highlight) 2px;
+}
 .btnDelete{
   color: red;
   margin-right: 1rem;
@@ -418,6 +433,7 @@ ul{
 
 
 
+
 /* interactive slider */
 /* .slider{
   /* position: relative;
@@ -477,4 +493,10 @@ ul{
 .slidecreator{
   border: dotted white 1px;
   display: flex;
+}
+
+/* * CollectionEditor */
+.collectionEditor .deleteBtn{
+  margin: 0 0 .2rem 0;
+  padding: 0 .2rem;
 }

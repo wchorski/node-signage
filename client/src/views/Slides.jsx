@@ -1,16 +1,21 @@
 import {React, useState, useEffect} from 'react'
 import {useNavigate, useLocation, Link} from 'react-router-dom'
+import { Formik, Form, Field } from 'formik'
+import * as Yup from 'yup'
 // import Cookies from 'js-cookie'
+import { MdTitle } from 'react-icons/md'
 
 import Navbar from '../components/Navbar'
 import Slide from '../components/Slide'
 import SlideCreator from '../components/SlideCreator'
 // import SlideEditor from '../components/SlideEditor'
 
-import axios from '../api/axios'
-import { StyledPostsList } from '../styles/PostsList.styled'
-import CollectionPreview from '../components/CollectionPreview'
 // import useAxiosPrivate from "../hooks/useAxiosPrivate";
+// import { StyledPostsList } from '../styles/PostsList.styled'
+import CollectionPreview from '../components/CollectionPreview'
+import axios from '../api/axios'
+import { FaRegTrashAlt } from 'react-icons/fa'
+// import { collection } from '../../../server/model/Slide'
 
 const Slides = () => {
 
@@ -18,39 +23,35 @@ const Slides = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [postsArray, setPosts] = useState([]);
+  const [slidesState, setSlidesState] = useState([]);
+  const [catsState, setCatsState] = useState([]);
   // const [roleState, setroleState] = useState('');
 
   const controller = new AbortController();
 
-  const getPosts = async () => {    
+  const getSlides = async () => {    
+    
     try {
       const response = await axios.get('/slides')
-      setPosts(response.data);
+      setSlidesState(response.data);
+
+      const res = await axios.get('/collectionname')
+      setCatsState(res.data)
+
+
     } catch (err) {
       console.error(err);
       navigate('/', { state: { from: location }, replace: true });
-    }
+    } 
   }
 
-  const deleteSlide = async (_id) => {
-    console.log(_id);
-    try {
-      axios.delete(`/slides/${_id}`).then(res => {
-        console.log('Deleted!!!', res)
-      })
+  const newCollectionName = async () => {
 
-    } catch (err) {
-      console.log(err)
-    } finally {
-      // TODO CSSTransitions to smoothly show update
-      getPosts();
-      // navigate('/slides')
-    }
   }
 
   useEffect(() => {
 
-    getPosts();
+    getSlides();
     // setroleState(Cookies.get('role')) 
 
     return () => {
@@ -59,53 +60,65 @@ const Slides = () => {
     }
   }, [])
 
-  const getUniqueCats = (array) => {
-    return [...new Set(array.map(q => q.collectionName))]
-  }
+  // useEffect(() => {
+  //   setCatsState([...new Set(slidesState.map(q => q.collectionName))])
+  // }, [slidesState])
+
+  // * FORM Control * * * * * 
+  const collectionSchema = Yup.object().shape({
+    collectionName: Yup.string().min(3).max(12).required('* required!'),
+  })
 
   return (
     <>
       <Navbar />
-      <section className='collections'>
+      <section>
+        <div className="collectionEditor">
+          <h1>Collection Editor</h1>
+          <ul>
+            {/* {catsState.map((cat, _id) =>(
+              <li key={_id}>
+                <button className='deleteBtn'>delete</button>
+                <Link to={`/slides/${cat.collectionName}`}> {cat.collectionName} </Link>
+              </li>
+            ))} */}
+          </ul>
 
-        {getUniqueCats(postsArray).map(collection => {
-          {console.log(collection);}
-          <CollectionPreview collectionName={collection} />
-        })}
+          <Formik
+            enableReinitialize
+            initialValues={{
+              collectionName: ''
+            }}
+            validationSchema={collectionSchema}
+            validateOnChange={false}
+            onSubmit={(values) => {
+              newCollectionName()
+            }}
+          >
+            {({ errors, touched, setFieldValue }) => (
+              <Form>
+                <div className='form-item'>
+                  <MdTitle />
+                  <Field name="collectionName" type="text" placeholder="new collection name..." className='collectionName'/>
+                  {errors.collectionName && touched.collectionName ? (
+                    <span className='formErr'>{errors.collectionName}</span>
+                    ) : null}
+                </div>
 
-        {/* {postsArray.map(post => (
-            <CollectionPreview collectionName={post.collectionName} />
-        ))}
-         */}
-        {/* <CollectionPreview collectionName="us_holidays"/>
-        <CollectionPreview collectionName="australian_holidays"/>
-        <CollectionPreview collectionName="vietnam_holidays"/> */}
+                <button className='submitPost' type='submit'>Add</button>
+              </Form>
+            )}
+
+          </Formik>
+        </div>
       </section>
 
-      <section>
-        <StyledPostsList>
-          {postsArray.slice().reverse().map((post) => (
-
-              <article className='excerpt' key={post._id}>
-                <Slide {...post} />
-
-                <div className="editBtns">
-                  <ul>
-                    <li><Link to={`/slides/editor/${post._id}`} className='edit'>Edit</Link></li>
-                    <li><button onClick={(e) => deleteSlide(post._id)}> Delete </button></li>
-                    <li>
-                      {/* // TODO screen reader label? */}
-                      <input type="checkbox" id="selectBox" />
-                      {/* <label for="selectBox">Select</label> */}
-                    </li>
-                  </ul>
-                </div>
-              </article>
-          ))}
-        </StyledPostsList>
-        
-        {/* <SlideEditor /> */}
-        {/* <SlideCreator /> */}
+      <section className='collections'>
+        {catsState.map((collection, i) => (
+          <div key={i}>
+            <CollectionPreview collectionName={collection}/>
+          </div>
+        ))}
       </section>
     </>
   )
