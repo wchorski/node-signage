@@ -7,7 +7,7 @@ export const uploadFile = async (file, vals, onUploadProgress) => {
   
   // formData.append("imageName", file.name + "--" + Date.now());
   const regex = new RegExp("[^0-9a-zA-Z]+", "g")
-  formData.append("imageName", file.name.replace(/\s[&\/\\#\@\!, +()$~%.'":*?<>{}]/g, '_') + "--" + Date.now());
+  formData.append("imageName", file.name.replace(/[&#\@\!, +()$~%'":*?<>{}]/g, '_') + "--" + Date.now());
   formData.append("imageData", file);
 
   

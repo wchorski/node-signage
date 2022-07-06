@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
     cb(null, './uploads/');
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + "--" + file.originalname.replace(/\s[&\/\\#\@\!, +()$~%.'":*?<>{}]/g, '_') );
+    cb(null, Date.now() + "--" + file.originalname.replace(/[&#\@\!, +()$~%'":*?<>{}]/g, '_') );
   }
 });
 
@@ -54,7 +54,7 @@ router.route('/')
       collectionName:  req.body.collectionName,
       
       imageName:       req.body.imageName,
-      imageData:       req.file.path.replace(/\s[&\/\\#\@\!, +()$~%.'":*?<>{}]/g, '_'),
+      imageData:       req.file.path.replace(/[&#\@\!, +()$~%'":*?<>{}]/g, '_'),
     });
     newImage.save()
       .then((result) => {

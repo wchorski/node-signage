@@ -57,7 +57,7 @@ const CollectionPreview = (props) => {
   }, [])
 
   const catNameFilter = (slides) => {
-    const filteredArray = slides.filter(slide => slide.collectionName === `${props.collectionName}`).reverse().slice(0,4);
+    const filteredArray = slides.filter(slide => slide.collectionName === `${props.collectionName}`).reverse();
 
     if(filteredArray.length === 0){
       return <p>[ No Slides. Click to add ]</p>
@@ -80,11 +80,6 @@ const CollectionPreview = (props) => {
 
             {catNameFilter(slidesState)}
 
-            {/* {slidesState.filter(slide => slide.collectionName === `${props.collectionName}`).reverse().slice(0,4).map((slide) => (
-
-              <Slide {...slide} key={slide._id}/>  
-              
-            ))} */}
           </div>
         </Link>
 
