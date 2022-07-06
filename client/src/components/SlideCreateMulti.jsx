@@ -46,7 +46,7 @@ const SlideCreateMulti = () => {
       template: 1,
     }
 
-    console.log(vals);
+    // console.log(vals);
 
     setProgress(0);
 

@@ -16,7 +16,7 @@ export const StyledDropZone = styled.div`
 
   .filePreview{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
 
     .imgFrame{

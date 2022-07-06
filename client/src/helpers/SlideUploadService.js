@@ -2,10 +2,12 @@ import axios from '../api/axios'
 
 export const uploadFile = async (file, vals, onUploadProgress) => {
 
+  
   let formData = new FormData();
-
-
-  formData.append("imageName", file.name + "--" + Date.now());
+  
+  // formData.append("imageName", file.name + "--" + Date.now());
+  const regex = new RegExp("[^0-9a-zA-Z]+", "g")
+  formData.append("imageName", file.name.replace(/\s[&\/\\#\@\!, +()$~%.'":*?<>{}]/g, '_') + "--" + Date.now());
   formData.append("imageData", file);
 
   
@@ -20,7 +22,6 @@ export const uploadFile = async (file, vals, onUploadProgress) => {
   console.log(file);
 
   try {
-    // console.log('hello');
     const data_1 = await axios.post("/slides", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -61,7 +62,6 @@ export const updateSlide = async (file, vals, _id, onUploadProgress) => {
 
 
   try {
-    console.log('hello');
     const data_1 = await axios.patch(`/slides/${_id}`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",

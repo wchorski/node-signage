@@ -4,7 +4,7 @@ import styled from 'styled-components'
 export const StyledCollectionPreview = styled.div`
 
   // background-color: whitesmoke;
-  // border: solid blue 5px;
+  border: solid grey 2px;
   margin-bottom: 1rem;
 
   // width: 25%
@@ -20,6 +20,7 @@ export const StyledCollectionPreview = styled.div`
   .collectionBlock{
     display: flex;
     flex-wrap: wrap;
+    min-height: 3rem;
 
     // border: solid black 1px;
     padding: .1rem;

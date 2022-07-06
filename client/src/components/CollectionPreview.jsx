@@ -18,6 +18,7 @@ const CollectionPreview = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [slidesState, setSlidesState] = useState([]);
+  const [catsState, setCatsState]     = useState([]);
   // const [roleState, setroleState] = useState('');
 
   const controller = new AbortController();
@@ -32,9 +33,21 @@ const CollectionPreview = (props) => {
     }
   }
 
+  const getCats = async () => {
+    try{
+      const res = await axios.get('/collectionname')
+      setCatsState(res.data)
+
+    } catch (err) {
+      console.error(err);
+      navigate('/', { state: { from: location }, replace: true });
+    }
+  } 
+
   useEffect(() => {
 
     getSlides();
+    getCats()
     // setroleState(Cookies.get('role')) 
 
     return () => {
@@ -43,6 +56,20 @@ const CollectionPreview = (props) => {
     }
   }, [])
 
+  const catNameFilter = (slides) => {
+    const filteredArray = slides.filter(slide => slide.collectionName === `${props.collectionName}`).reverse().slice(0,4);
+
+    if(filteredArray.length === 0){
+      return <p>[ No Slides. Click to add ]</p>
+      
+    } else {
+      return filteredArray.map(slide => (
+        <Slide {...slide} key={slide._id}/>  
+      ))
+
+    }
+  }
+
 
   return (
     <>
@@ -50,9 +77,14 @@ const CollectionPreview = (props) => {
         <h3>{props.collectionName}</h3>
         <Link to={`/slides/${props.collectionName}`}>
           <div className="collectionBlock">
-            {slidesState.filter(slide => slide.collectionName === `${props.collectionName}`).reverse().slice(0,4).map((slide) => (
-              <Slide {...slide} key={slide._id}/>
-            ))}
+
+            {catNameFilter(slidesState)}
+
+            {/* {slidesState.filter(slide => slide.collectionName === `${props.collectionName}`).reverse().slice(0,4).map((slide) => (
+
+              <Slide {...slide} key={slide._id}/>  
+              
+            ))} */}
           </div>
         </Link>
 

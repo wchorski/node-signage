@@ -22,9 +22,9 @@ const Slides = () => {
   // const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
   const location = useLocation();
-  const [postsArray, setPosts] = useState([]);
+  const [postsArray, setPosts]        = useState([]);
   const [slidesState, setSlidesState] = useState([]);
-  const [catsState, setCatsState] = useState([]);
+  const [catsState, setCatsState]     = useState([]);
   // const [roleState, setroleState] = useState('');
 
   const controller = new AbortController();
@@ -33,16 +33,25 @@ const Slides = () => {
     
     try {
       const response = await axios.get('/slides')
+      console.log(response.data);
       setSlidesState(response.data);
-
-      const res = await axios.get('/collectionname')
-      setCatsState(res.data)
-
 
     } catch (err) {
       console.error(err);
       navigate('/', { state: { from: location }, replace: true });
     } 
+  }
+
+  const getCats = async () => {
+    try{
+      const res = await axios.get('/collectionname')
+      console.log(res.data)
+      setCatsState(res.data)
+
+    } catch (err) {
+      console.log(err);
+      navigate('/', { state: { from: location }, replace: true });
+    }
   }
 
   const newCollectionName = async () => {
@@ -52,6 +61,7 @@ const Slides = () => {
   useEffect(() => {
 
     getSlides();
+    getCats()
     // setroleState(Cookies.get('role')) 
 
     return () => {
@@ -76,12 +86,12 @@ const Slides = () => {
         <div className="collectionEditor">
           <h1>Collection Editor</h1>
           <ul>
-            {/* {catsState.map((cat, _id) =>(
+            {catsState.map((cats, _id) =>(
               <li key={_id}>
                 <button className='deleteBtn'>delete</button>
-                <Link to={`/slides/${cat.collectionName}`}> {cat.collectionName} </Link>
+                <Link to={`/slides/${cats.collectionName}`}> {cats.collectionName} </Link>
               </li>
-            ))} */}
+            ))}
           </ul>
 
           <Formik
@@ -114,9 +124,9 @@ const Slides = () => {
       </section>
 
       <section className='collections'>
-        {catsState.map((collection, i) => (
-          <div key={i}>
-            <CollectionPreview collectionName={collection}/>
+        {catsState.map((cats, _id) => (
+          <div key={_id}>
+            <CollectionPreview collectionName={cats.collectionName}/>
           </div>
         ))}
       </section>

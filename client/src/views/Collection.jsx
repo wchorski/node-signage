@@ -62,6 +62,8 @@ const Collection = () => {
     <>
       <Navbar />
       <section>
+
+        <h1>{collectionName}</h1>
         
         <SlideCreateMulti />
 
