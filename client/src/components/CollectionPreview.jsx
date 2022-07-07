@@ -76,7 +76,7 @@ const CollectionPreview = (props) => {
     <>
       <StyledCollectionPreview>
         <h3>{props.collectionName}</h3>
-        <Link to={`/player/${props.collectionName}`} className=""><AiFillPlaySquare /> Play Collection</Link>
+        <Link to={`/player/${props.collectionName}`} className="btnPlayer"><AiFillPlaySquare /> Play Collection</Link>
 
         <Link to={`/slides/${props.collectionName}`}>
           <div className="collectionBlock">

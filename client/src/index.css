@@ -257,6 +257,21 @@ ul{
   color: red;
 }
 
+.btnPlayer{
+  border: solid var(--color-highlight) 2px;
+  border-radius: 10px;
+  display: block;
+  padding: .1rem;
+  margin-bottom: 1rem;
+  max-width: 10em;
+}
+.btnPlayer svg{
+  font-size: 50px;
+}
+.btnPlayer:hover{
+  border: solid var(--color-alt) 2px;
+}
+
 .createPost{
   background-color: white;
   border: solid var(--color-highlight) 3px;

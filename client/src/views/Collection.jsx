@@ -65,7 +65,7 @@ const Collection = () => {
       <section>
 
         <h1>{collectionName}</h1>
-        <Link to={`/player/${collectionName}`} className=""><AiFillPlaySquare /> Play Collection</Link>
+        <Link to={`/player/${collectionName}`} className="btnPlayer"><AiFillPlaySquare /> Play Collection</Link>
         
         <SlideCreateMulti />
 

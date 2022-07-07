@@ -37,6 +37,11 @@ const SlidePlayer = (params) => {
 
     getSlides();
 
+    setInterval(() => {
+
+      getSlides();
+
+    }, 30000)
 
     return () => {
       // isMounted = false;
@@ -60,7 +65,7 @@ const SlidePlayer = (params) => {
     await delay(speed)
     nextSlide()
   }
-  // autoAdv(5)
+  autoAdv(8)
 
   return (
     <>

@@ -47,10 +47,14 @@ Digital Signage on a MERN stack
     + edit buttons each slide on bottom right [ select, edit, delete ] 
     + make this page view all collections
     + select and batch delete
+    + 
   ### Slides creator / editor
     + image: pic from previously uploaded pics
     + check to see if pic is already uploaded by name and use that
-    + extra option to load "baked slides" (like an exported Power Point)
+    + ✅ extra option to load "baked slides" (like an exported Power Point)
+    + re-order via drag n drop
+    + set slide advance time
+    + hide / show arrows
     +
   ### Collection view
     + CRUD collections
@@ -71,11 +75,13 @@ Digital Signage on a MERN stack
     + remove bootstrap stylings in 'client/index.html'
     + set max num of slides per collection
     + set max file upload limit
+    + activate / deactivate collections
+    + set slide advance global time
     +
   ### server
 
   ### frontend
-    + dynamically create *Players* for each active collection
+    + ✅ dynamically create *Players* for each active collection
     +
 
 </details>
