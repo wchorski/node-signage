@@ -21,18 +21,19 @@ export const StyledCollectionPreview = styled.div`
     display: flex;
     flex-wrap: wrap;
     min-height: 3rem;
+    justify-content: center;
 
     // border: solid black 1px;
     padding: .1rem;
     box-shadow: #2f26237a 1px 1px 2px; 
-    width: 800px;
+    // width: 800px;
 
     &:hover{
       background-color: #c5beba8f;
     }
 
     .styledSlide{ 
-      width: 44%;
+      width: 400px;
       margin: .1rem;
 
       h2{

@@ -33,7 +33,6 @@ const Slides = () => {
     
     try {
       const response = await axios.get('/slides')
-      console.log(response.data);
       setSlidesState(response.data);
 
     } catch (err) {
@@ -45,17 +44,31 @@ const Slides = () => {
   const getCats = async () => {
     try{
       const res = await axios.get('/collectionname')
-      console.log(res.data)
+
       setCatsState(res.data)
 
     } catch (err) {
-      console.log(err);
+      console.error(err);
       navigate('/', { state: { from: location }, replace: true });
     }
   }
 
-  const newCollectionName = async () => {
+  const newCollectionName = async (vals) => {
+    try{
+      const res = await axios.post('/collectionname', 
+        JSON.stringify({...vals}),
+        {
+          headers: { 'Content-Type': 'application/json' }
+        }
+      )
+      // TODO update cat list
+      getSlides()
+      getCats()
 
+    } catch (err) {
+      console.error(err);
+      navigate('/', { state: { from: location }, replace: true });
+    }
   }
 
   useEffect(() => {
@@ -76,7 +89,12 @@ const Slides = () => {
 
   // * FORM Control * * * * * 
   const collectionSchema = Yup.object().shape({
-    collectionName: Yup.string().min(3).max(12).required('* required!'),
+    collectionName: 
+      Yup.string()
+        .min(3, 'minimum 3 characters')
+        .max(12, 'max 12 characters')
+        .matches(/^[aA-zZ]+$/, " * Only alphabets are allowed for this field. NO spaces ")
+        .required('* required!'),
   })
 
   return (
@@ -102,7 +120,7 @@ const Slides = () => {
             validationSchema={collectionSchema}
             validateOnChange={false}
             onSubmit={(values) => {
-              newCollectionName()
+              newCollectionName(values)
             }}
           >
             {({ errors, touched, setFieldValue }) => (
@@ -115,7 +133,7 @@ const Slides = () => {
                     ) : null}
                 </div>
 
-                <button className='submitPost' type='submit'>Add</button>
+                <button className='submitPost' type='submit'>Add Collection</button>
               </Form>
             )}
 

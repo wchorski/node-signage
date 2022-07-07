@@ -14,6 +14,7 @@ const SlideCreateMulti = () => {
   const [progress, setProgress] = useState(0);
   const [message, setMessage] = useState("");
   const [fileInfos, setFileInfos] = useState([]);
+  const [addButtonState, setaddButtonState] = useState(false)
   const captionRef = useRef(null)
 
 
@@ -25,6 +26,7 @@ const SlideCreateMulti = () => {
         preview: URL.createObjectURL(file),
       }),
     ))
+    setaddButtonState(true)
     console.log('selectedFiles: ' + URL.createObjectURL(selectedFiles[0]));
   }, [])
   const { getRootProps, getInputProps, isDragActive } = useDropzone({onDrop, multiple: true})
@@ -65,14 +67,18 @@ const SlideCreateMulti = () => {
           setFileInfos(files.data);
           // setimgPreview(DefaultImg)
         })
+        .then(() => {
+          window.location.reload()
+        })
         .catch(() => {
           setProgress(0);
           setMessage("Could not upload the file!");
           // setCurrentFile(undefined);
         });
+      });
       
-    });
-  }
+      window.location.reload()
+    }
   
   return (
     <>
@@ -90,7 +96,10 @@ const SlideCreateMulti = () => {
           </div>
 
           {/* <input ref={captionRef} type="text" placeholder='image caption...' /> */}
-          <button onClick={() => upload()}>Add Slides</button>
+
+          {addButtonState && (
+            <button onClick={() => upload()}>Add Slides</button>
+          )}
         </div>
       </StyledDropZone>
       {/* //* FILE UPLOAD End * * * * * * * * * * * * * * * * * * * * * * * * */ }

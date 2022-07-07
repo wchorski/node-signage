@@ -50,6 +50,7 @@ function App() {
         <Route path="/slides/editor/:_id" element={<SlideEditor />} />
         <Route path="/slides/:collectionName" element={<Collection />} />
         <Route path="/player" element={<Player />} />
+        <Route path="/player/:collectionName" element={<Player />} />
 
         {/* we want to protect these routes */}
         <Route element={<LoginPersist />}>

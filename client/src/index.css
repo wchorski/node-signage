@@ -253,6 +253,10 @@ ul{
   /* border-bottom: black dotted 1px; */
 }
 
+.formErr{
+  color: red;
+}
+
 .createPost{
   background-color: white;
   border: solid var(--color-highlight) 3px;

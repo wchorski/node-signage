@@ -7,15 +7,15 @@ import { StyledPlayer } from '../styles/Player.styled'
 
 
 
-const SlidePlayer = () => {
+const SlidePlayer = (params) => {
 
   const navigate = useNavigate();
   const location = useLocation();
   const controller = new AbortController();
-  let slideLength
 
   //* Slides data
   const [slidesState, setSlides] = useState([]);
+  const [slidesFilteredLength, setslidesFilteredLength] = useState(3);
 
   const getSlides = async () => {    
     try {
@@ -25,10 +25,13 @@ const SlidePlayer = () => {
     } catch (err) {
       console.error(err);
       navigate('/', { state: { from: location }, replace: true });
-    } finally {
-      slideLength = slidesState.length
     }
   }
+
+  useEffect(() => {
+    setslidesFilteredLength(slidesState.filter(slide => slide.collectionName === `${params.collectionName}`).length)
+    console.log(slidesFilteredLength);
+  }, [slidesState])
 
   useEffect(() => {
 
@@ -45,8 +48,8 @@ const SlidePlayer = () => {
   //* Slide controller
   const [current, setCurrent] = useState(0)
 
-  const nextSlide = () => { setCurrent(current >= slidesState.length - 1 ? 0                      : current + 1) }
-  const prevSlide = () => { setCurrent(current <=                      0 ? slidesState.length - 1 : current - 1) }
+  const nextSlide = () => { console.log(current + ' : ' + slidesFilteredLength); setCurrent(current >= slidesFilteredLength - 1 ? 0                        : current + 1) }
+  const prevSlide = () => { console.log(current + ' : ' + slidesFilteredLength); setCurrent(current <=                        0 ? slidesFilteredLength - 1 : current - 1) }
 
   function delay(n){
     return new Promise(function(resolve){
@@ -65,8 +68,10 @@ const SlidePlayer = () => {
       <RiArrowLeftSLine  className='left-arrow'  onClick={prevSlide} />
       <RiArrowRightSLine className='right-arrow' onClick={nextSlide} />
 
+      {/* // TODO if no catagory show all slides? */}
+
       <ul className='slider-list template--0'>
-        {slidesState.map((slide, _id) => {
+        {/* {slidesState.map((slide, _id) => {
           return(
             <li className={_id === current ? 'slide active' : 'slide'} key= {_id}>
               { _id === current && (
@@ -78,7 +83,17 @@ const SlidePlayer = () => {
               
             </li>
           )
-        })}
+        })} */}
+        {slidesState.filter(slide => slide.collectionName === `${params.collectionName}`).slice().reverse().map((post, i) => (
+          
+          <li className={i === current ? 'slide active' : 'slide'} key= {i}>
+
+            { i === current && (
+              <Slide {...post} />
+              ) }
+            
+          </li>
+        ))}
       </ul>
 
     </StyledPlayer>

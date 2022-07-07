@@ -7,6 +7,7 @@ import Navbar from '../components/Navbar'
 import Slide from '../components/Slide'
 import { StyledPostsList } from '../styles/PostsList.styled'
 import SlideCreateMulti from '../components/SlideCreateMulti'
+import { AiFillPlaySquare } from 'react-icons/ai'
 
 const Collection = () => {
 
@@ -64,10 +65,9 @@ const Collection = () => {
       <section>
 
         <h1>{collectionName}</h1>
+        <Link to={`/player/${collectionName}`} className=""><AiFillPlaySquare /> Play Collection</Link>
         
         <SlideCreateMulti />
-
-        <Link to={`/`} className='btn'><VscDiffAdded /> Add Multiple 'Baked' Slides</Link>
 
         <StyledPostsList>
           {slidesState.filter(slide => slide.collectionName === `${collectionName}`).slice().reverse().map((post) => (

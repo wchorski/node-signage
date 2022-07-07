@@ -64,6 +64,7 @@ Digital Signage on a MERN stack
   ### Slide player
     + need to fix auto play time when also allowing manual advancing
     + advance with arrow keys
+    + refresh page if => slide count request returns a greater or less than number than current slides
     + 
   ### admin
     + block users from editing certain collections
