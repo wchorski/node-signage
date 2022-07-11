@@ -77,6 +77,7 @@ const CollectionPreview = (props) => {
       <StyledCollectionPreview>
         <h3>{props.collectionName}</h3>
         <Link to={`/player/${props.collectionName}`} className="btnPlayer"><AiFillPlaySquare /> Play Collection</Link>
+        <input type="checkbox" />
 
         <Link to={`/slides/${props.collectionName}`}>
           <div className="collectionBlock">

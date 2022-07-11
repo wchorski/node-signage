@@ -71,6 +71,19 @@ const Slides = () => {
     }
   }
 
+  const collectionActive = async (name, onOff, _id) => {
+    try{
+      // console.log(name + " : " + onOff + " : " + _id)
+      const isActive = {isactive: onOff}
+      let res = await axios.patch(`/collectionname/${_id}`, JSON.stringify({...isActive}),{
+        headers: { 'Content-Type': 'application/json'},
+      })
+
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   useEffect(() => {
 
     getSlides();
@@ -103,11 +116,13 @@ const Slides = () => {
       <section>
         <div className="collectionEditor">
           <h1>Collection Editor</h1>
+
           <ul>
-            {catsState.map((cats, _id) =>(
+            {catsState.map((cat, _id) =>(
               <li key={_id}>
-                <button className='deleteBtn'>delete</button>
-                <Link to={`/slides/${cats.collectionName}`}> {cats.collectionName} </Link>
+                {/* <button className='deleteBtn'>delete</button> */}
+                <input className='chbx' type="checkbox" defaultChecked={cat.isactive} onClick={(e) => collectionActive(cat.collectionName, e.target.checked, cat._id)}/>
+                <Link to={`/slides/${cat.collectionName}`}> {cat.collectionName} </Link>
               </li>
             ))}
           </ul>

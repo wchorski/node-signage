@@ -1,11 +1,14 @@
 [
   {
-    "collectionName": "us_holidays"
+    "collectionName": "us_holidays",
+    "isactive": true
   },
   {
-    "collectionName": "australian_holidays"
+    "collectionName": "australian_holidays",
+    "isactive": false
   },
   {
-    "collectionName": "vietnam_holidays"
+    "collectionName": "vietnam_holidays",
+    "isactive": false
   }
 ]

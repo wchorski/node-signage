@@ -11,6 +11,10 @@ const collectionNameSchema = new Schema({
     required: false,
     default: "no_collection"
   },
+  isactive: {
+    type: Boolean,
+    default: false,
+  },
   dateCreated: {
     type: Date,
     required: true,

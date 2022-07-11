@@ -8,6 +8,7 @@ router.route('/')
   .get(verifyRoles(ROLES_LIST.User), postCont.getAllPosts)
   .post(verifyRoles(ROLES_LIST.Editor), postCont.createPost)
 
+  
 router.route('/:id')
   .get(verifyRoles(ROLES_LIST.User), postCont.getPost)
   // TODO update permission for Editor

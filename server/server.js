@@ -64,7 +64,6 @@ app.use('/slides',            require('./routes/slides'))
 app.use('/collectionname',    require('./routes/collectionname'))
 app.use('/image',             require('./routes/image'));
 
-
 app.use(verifyJWT);
 app.use('/posts',      require('./routes/posts'));
 app.use('/employees',  require('./routes/api/employees'));

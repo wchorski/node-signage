@@ -35,6 +35,7 @@ export const StyledCollectionPreview = styled.div`
     .styledSlide{ 
       width: 400px;
       margin: .1rem;
+      position: relative;
 
       h2{
         font-size: 1rem;

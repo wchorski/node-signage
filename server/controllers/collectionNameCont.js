@@ -40,3 +40,16 @@ exports.delete = async (req, res) => {
     res.status(400).json({status: 'failed model deletion',})
   }
 }
+
+exports.update = async (req, res, next) => {
+  try{
+    const mdl = await Model.findById(req.params.id)
+    Object.assign(mdl, req.body)
+    res.status(200).json(mdl)
+    mdl.save()
+
+  } catch (err){
+    console.log(err);
+    res.status(400).json({status: 'failed to update mdl', message: err.toString()})
+  }
+}

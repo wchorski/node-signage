@@ -26,6 +26,7 @@ import Player from './views/Player';
 import SlideCreator from './components/SlideCreator';
 import SlideEditor from './components/SlideEditor';
 import Collection from './views/Collection';
+import CollectionPlayer from './components/CollectionPlayer';
 
 const ROLES = {
   'Admin': 5150,
@@ -50,7 +51,7 @@ function App() {
         <Route path="/slides/editor/:_id" element={<SlideEditor />} />
         <Route path="/slides/:collectionName" element={<Collection />} />
         <Route path="/player" element={<Player />} />
-        <Route path="/player/:collectionName" element={<Player />} />
+        <Route path="/player/:collectionName" element={<CollectionPlayer />} />
 
         {/* we want to protect these routes */}
         <Route element={<LoginPersist />}>
