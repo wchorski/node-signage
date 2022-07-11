@@ -8,7 +8,7 @@ const COLLECTION = process.env.MONGODB_COLLECTION
 
 const mongoURL = (USER === 'localhost' || USER === 'undefined' ) 
   ? `mongodb://${URI}:${PORT}/${COLLECTION}`
-  : `mongodb://${USER}:${PWD}@${URI}:${PORT}/${COLLECTION}?authSource=admin`
+  : `mongodb://${USER}:${encodeURIComponent(PWD)}@${URI}:${PORT}/${COLLECTION}?authSource=admin`
 
 console.log(mongoURL);
 
