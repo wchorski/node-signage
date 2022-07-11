@@ -19,6 +19,17 @@ const SlidePlayer = () => {
   const [slidesFilteredLength, setslidesFilteredLength] = useState(3);
   const [catsState, setCatsState]                       = useState([]);
 
+  const [settingsState, setsettingsState]     = useState([{}]);
+  const getSettings = async () => {
+    try{
+      const res = await axios.get('/settings')
+      setsettingsState(res.data)
+
+    } catch (err) {
+      console.error(err);
+    } 
+  }
+
   const getSlides = async () => {    
     try {
       const response = await axios.get('/slides')
@@ -53,6 +64,7 @@ const SlidePlayer = () => {
 
   useEffect(() => {
 
+    getSettings()
     getSlides();
     getCats();
 
@@ -81,8 +93,12 @@ const SlidePlayer = () => {
   async function autoAdv(speed){
     await delay(speed)
     nextSlide()
+    console.log('autoAdv triggered');
   }
-  // autoAdv(8)
+
+  if(settingsState[0].autoAdv){
+    autoAdv(settingsState[0].advSpeed)
+  } 
 
 
   const filterSlides = () => {

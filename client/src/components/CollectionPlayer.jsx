@@ -77,7 +77,8 @@ const CollectionPlayer = () => {
 
       <ul className='slider-list list--0'>
 
-        { slidesState.filter(slide => slide.collectionName === `${collectionName}`).slice().reverse().map((post, i) => (
+        { 
+          slidesState.filter(slide => slide.collectionName === `${collectionName}`).slice().reverse().map((post, i) => (
             
             <li className={i === current ? 'slide active' : 'slide'} key= {i}>
 

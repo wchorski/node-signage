@@ -141,6 +141,11 @@ input.color:hover{
   background-color: #ffffff;
 }
 
+label{
+  color: rgba(255, 255, 255, 0.454);
+  font-size: 12px;
+}
+
 label,
 button {
   margin-top: 1rem;

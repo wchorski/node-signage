@@ -60,10 +60,15 @@ app.use('/auth',      require('./routes/auth'));
 app.use('/refresh',   require('./routes/refresh'));
 app.use('/logout',    require('./routes/logout'));
 
+
 app.use('/slides',            require('./routes/slides'))
 app.use('/collectionname',    require('./routes/collectionname'))
 app.use('/image',             require('./routes/image'));
 
+
+app.use('/settings',          require('./routes/settings'))
+
+// routes that are protected
 app.use(verifyJWT);
 app.use('/posts',      require('./routes/posts'));
 app.use('/employees',  require('./routes/api/employees'));
@@ -101,3 +106,7 @@ defaultSlides()
 // * default collections 
 const defaultCollections = require('./config/defaultCollections')
 defaultCollections()
+
+// * default Settings 
+const defaultSettings = require('./config/defaultSettings')
+defaultSettings()

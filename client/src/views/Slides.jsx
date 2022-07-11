@@ -4,6 +4,8 @@ import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 // import Cookies from 'js-cookie'
 import { MdTitle } from 'react-icons/md'
+import { TiArrowLoop } from 'react-icons/ti'
+
 
 import Navbar from '../components/Navbar'
 import Slide from '../components/Slide'
@@ -15,6 +17,7 @@ import SlideCreator from '../components/SlideCreator'
 import CollectionPreview from '../components/CollectionPreview'
 import axios from '../api/axios'
 import { FaRegTrashAlt } from 'react-icons/fa'
+import PlayerSettings from '../components/PlayerSettings'
 // import { collection } from '../../../server/model/Slide'
 
 const Slides = () => {
@@ -153,6 +156,9 @@ const Slides = () => {
             )}
 
           </Formik>
+
+          <PlayerSettings />
+
         </div>
       </section>
 
