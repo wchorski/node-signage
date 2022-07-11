@@ -1,0 +1,63 @@
+version: '3'
+
+services:
+
+  mongo:
+    restart: unless-stopped
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=<username>
+      - MONGO_INITDB_ROOT_PASSWORD=<password>
+      - MONGO_INITDB_DATABASE=auth
+    volumes:
+      - ./db/mongo-db:/data/db
+    networks:
+      - dgray-network
+
+  server:
+    restart: unless-stopped
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "4031:3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3001 # MUST match with External port above ^
+      - DATABASE_URI=mongo # match with mongo container_name
+      - DATABASE_PORT=27017 # match with mongo container
+      - MONGO_USER=<username> # match with mongo container
+      - MONGO_PASS=<password> # match with mongo container
+      - MONGODB_COLLECTION=dgrayCollection
+      - REFRESH_TOKEN_SECRET=<secrethash>
+      - ACCESS_TOKEN_SECRET=<secrethash>
+      - FRONTEND_URL_ORIGIN=https://app.mywebsite.com
+      - FRONTEND_URL_PORT=443 # if using SSL = 443
+    depends_on:
+      - mongo
+    networks:
+      - dgray-network
+
+  # nginx built inside
+  client:
+    restart: unless-stopped
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - 4030:80 # because nginx is inside this container too
+    environment:
+      - REACT_APP__API_IP=https://app.mywebsite.com
+      - REACT_APP__API_PORT=443 # MUST match API external port. use 433 if https://
+    depends_on:
+      - server
+    networks:
+      - dgray-network
+      # add to ngnix-prox-mgmt network
+
+networks:
+  dgray-network:
+    driver: bridge
+
+volumes:
+  mongo-db:
