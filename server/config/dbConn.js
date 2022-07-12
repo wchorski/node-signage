@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 
 const USER = process.env.MONGO_USER
-const PWD = process.env.MONGO_PASS
+const PWD = encodeURIComponent(process.env.MONGO_PASS)
 const URI = process.env.DATABASE_URI
 const PORT = process.env.DATABASE_PORT
 const COLLECTION = process.env.MONGODB_COLLECTION
 
 const mongoURL = (USER === 'localhost' || USER === 'undefined' ) 
   ? `mongodb://${URI}:${PORT}/${COLLECTION}`
-  : `mongodb://${USER}:${encodeURIComponent(PWD)}@${URI}:${PORT}/${COLLECTION}?authSource=admin`
+  : `mongodb://${USER}:${PWD}@${URI}:${PORT}/${COLLECTION}?authSource=admin`
 
 console.log(mongoURL);
 
