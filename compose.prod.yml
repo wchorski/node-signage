@@ -23,7 +23,7 @@ services:
       - "4031:3001"
     environment:
       - NODE_ENV=production
-      - PORT=3001 # MUST match with External port above ^
+      - PORT=3001 # MUST match with Internal port above ^
       - DATABASE_URI=mongo # match with mongo container_name
       - DATABASE_PORT=27017 # match with mongo container
       - MONGO_USER=<username> # match with mongo container

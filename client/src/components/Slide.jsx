@@ -5,6 +5,7 @@ import { StyledSlide } from '../styles/Slide.styled'
 
 const API_IP = process.env.REACT_APP__API_IP;
 const API_PORT = process.env.REACT_APP__API_PORT;
+const API_FOLDER = process.env.REACT_APP__API_FOLDER;
 
 const formatDate = (inputDate) => {
   try{
@@ -22,7 +23,7 @@ const Slide = (props) => {
   let imgBG = props.imageData;
 
   if(props.imageData && props.imageData[0] === 'u'){
-    imgBG = `${API_IP}:${API_PORT}/` + props.imageData
+    imgBG = `${API_IP}:${API_PORT}${API_FOLDER}` + props.imageData
     imgBG = imgBG.replace(/\\/g, '/')
   } 
 
