@@ -1,3 +1,4 @@
+compose.yml
 db/mongo-db
 .env
 !.env.dev
