@@ -64,6 +64,7 @@ Digital Signage on a MERN stack
     + create new blank collection
     + add multi images as just slides (i.e. powerpoint pressy)
     + choose the active collection
+    + undo button on deletions
     + 
   ### Slide player
     + need to fix auto play time when also allowing manual advancing

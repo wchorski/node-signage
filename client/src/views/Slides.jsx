@@ -5,6 +5,7 @@ import * as Yup from 'yup'
 // import Cookies from 'js-cookie'
 import { MdTitle } from 'react-icons/md'
 import { TiArrowLoop } from 'react-icons/ti'
+import { BiAddToQueue } from 'react-icons/bi'
 
 
 import Navbar from '../components/Navbar'
@@ -18,6 +19,7 @@ import CollectionPreview from '../components/CollectionPreview'
 import axios from '../api/axios'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import PlayerSettings from '../components/PlayerSettings'
+import { StyledCollectionsEditor } from '../styles/CollectionsEditor.styled'
 // import { collection } from '../../../server/model/Slide'
 
 const Slides = () => {
@@ -64,7 +66,6 @@ const Slides = () => {
           headers: { 'Content-Type': 'application/json' }
         }
       )
-      // TODO update cat list
       getSlides()
       getCats()
 
@@ -117,50 +118,57 @@ const Slides = () => {
     <>
       <Navbar />
       <section>
-        <div className="collectionEditor">
-          <h1>Collection Editor</h1>
-          <label>activate collections to be shown in the main Player slideshow</label>
 
-          <ul>
-            {catsState.map((cat, _id) =>(
-              <li key={_id}>
-                {/* <button className='deleteBtn'>delete</button> */}
-                <input className='chbx' type="checkbox" defaultChecked={cat.isactive} onClick={(e) => collectionActive(cat.collectionName, e.target.checked, cat._id)}/>
-                <Link to={`/slides/${cat.collectionName}`}> {cat.collectionName} </Link>
-              </li>
-            ))}
-          </ul>
+        <StyledCollectionsEditor>
+          <div className="collectionEditor">
+            <h1>Collection Editor</h1>
+            <label>activate collections to be shown in the main Player slideshow</label>
 
-          <Formik
-            enableReinitialize
-            initialValues={{
-              collectionName: ''
-            }}
-            validationSchema={collectionSchema}
-            validateOnChange={false}
-            onSubmit={(values) => {
-              newCollectionName(values)
-            }}
-          >
-            {({ errors, touched, setFieldValue }) => (
-              <Form>
-                <div className='form-item'>
-                  <MdTitle />
-                  <Field name="collectionName" type="text" placeholder="new collection name..." className='collectionName'/>
-                  {errors.collectionName && touched.collectionName ? (
-                    <span className='formErr'>{errors.collectionName}</span>
+            <ul className='col-list'>
+              {catsState.map((cat, _id) =>(
+                <li key={_id}>
+                  {/* <button className='deleteBtn'>delete</button> */}
+                  <input className='toggle' id={`check_${_id}`} type="checkbox" defaultChecked={cat.isactive} onClick={(e) => collectionActive(cat.collectionName, e.target.checked, cat._id)}/>
+                  <label for={`check_${_id}`}>Collection {cat.collectionName} toggle</label>
+                  <Link to={`/slides/${cat.collectionName}`}> {cat.collectionName} </Link>
+                </li>
+              ))}
+            </ul>
+
+            <Formik
+              enableReinitialize
+              initialValues={{
+                collectionName: ''
+              }}
+              validationSchema={collectionSchema}
+              validateOnChange={false}
+              onSubmit={(values) => {
+                newCollectionName(values)
+              }}
+            >
+              {({ errors, touched, setFieldValue }) => (
+                <Form>
+                  <div className='form-item'>
+                    <Field name="collectionName" type="text" placeholder="new collection name..." className='collectionName'/>
+
+                    <button className='submitPost' type='submit'> <BiAddToQueue/> Add Collection</button>
+
+                    {errors.collectionName && touched.collectionName ? (
+                      <span className='formErr'>{errors.collectionName}</span>
                     ) : null}
-                </div>
+                  </div>
 
-                <button className='submitPost' type='submit'>Add Collection</button>
-              </Form>
-            )}
+                </Form>
+              )}
 
-          </Formik>
+            </Formik>
+          </div>
+        </StyledCollectionsEditor>
+      </section>
 
-          <PlayerSettings />
 
-        </div>
+      <section>
+        <PlayerSettings />
       </section>
 
       <section className='collections'>
