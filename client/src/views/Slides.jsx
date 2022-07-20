@@ -119,6 +119,7 @@ const Slides = () => {
       <section>
         <div className="collectionEditor">
           <h1>Collection Editor</h1>
+          <label>activate collections to be shown in the main Player slideshow</label>
 
           <ul>
             {catsState.map((cat, _id) =>(

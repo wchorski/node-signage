@@ -10,7 +10,6 @@ const mongoURL = (USER === 'localhost' || USER === 'undefined' )
   ? `mongodb://${URI}:${PORT}/${COLLECTION}`
   : `mongodb://${USER}:${PWD}@${URI}:${PORT}/${COLLECTION}?authSource=admin`
 
-console.log(mongoURL);
 
 const connectDB = async () => {
   try {

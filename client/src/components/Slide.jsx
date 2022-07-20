@@ -5,7 +5,7 @@ import { StyledSlide } from '../styles/Slide.styled'
 
 const API_IP = process.env.REACT_APP__API_IP;
 const API_PORT = process.env.REACT_APP__API_PORT;
-const API_FOLDER = process.env.REACT_APP__API_FOLDER;
+const API_FOLDER = process.env.REACT_APP__API_FOLDER ? process.env.REACT_APP__API_FOLDER  : "/";
 
 const formatDate = (inputDate) => {
   try{
