@@ -17,6 +17,8 @@ const Home = (props, req, res) => {
   return (
     <>
       <Navbar />
+
+      
       <section>
 
         <h1>Node Signage</h1>

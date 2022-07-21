@@ -84,6 +84,34 @@ export const StyledPlayerSettings = styled.div`
         border-radius: 0 0 4px 0;
       }
     }
+
+    .animPreview{
+      border: solid white 1px;
+      position: relative;
+
+      
+      .slide{
+        background-color: blue;
+        border: dotted red 1px;
+        height: 30px;
+        width: 100%;
+
+        padding: 1rem;
+        margin: 5px;
+
+        position: absolute;
+
+        display: none;
+
+        p{
+          text-align: center;
+        }
+      }
+
+      .active{
+        display: flex;
+      }
+    }
   }
   
 `

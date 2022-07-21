@@ -15,7 +15,7 @@ const SlidePlayer = () => {
 
   //* Slides data
   const [slidesState, setSlides]                        = useState([]);
-  const [activeSlides, setactiveSlides]                        = useState([]);
+  const [activeSlides, setactiveSlides]                 = useState([]);
   const [slidesFilteredLength, setslidesFilteredLength] = useState(3);
   const [catsState, setCatsState]                       = useState([]);
 

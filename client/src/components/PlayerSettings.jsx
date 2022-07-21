@@ -77,6 +77,31 @@ const PlayerSettings = () => {
   }, [])
 
 
+  const [setTimeOut, setsetTimeOut]              = useState(5)
+  const [current, setCurrent]                    = useState(3)
+  const [activeSlides, setactiveSlides]          = useState([{title: 'one', color: 'red'}, {title: 'two', color: 'blue'}, {title: 'three', color: 'green'}]);
+
+  const nextSlide = () => { console.log((current + 1) + ' : ' + 3); setCurrent(current >= 3 - 1 ? 0                        : current + 1) }
+
+  function delay(n){
+
+    setsetTimeOut = setTimeout(() => {
+      
+    })
+
+    // return new Promise(function(resolve){
+    //   setTimeout(resolve,n*1000);
+    // });
+  }
+  async function autoAdv(speed){
+    await delay(speed)
+    nextSlide()
+    console.log('autoAdv triggered');
+  }
+
+  autoAdv(timerState)
+
+
   return (
 
     <StyledPlayerSettings>
@@ -117,6 +142,22 @@ const PlayerSettings = () => {
                 onClick={e => incrementSpeed(-1)}   
               > - 
               </span>
+
+
+              <ul className="slid-list">
+                {
+                  activeSlides
+                    .map((slide, i ) => (
+                      <li className={i === current ? 'slide active' : 'slide'} key= {i} style={{backgroundColor: slide.color}}>
+
+                        { i === current && (
+                          <p>{slide.title}</p>
+                        )}
+                        
+                      </li>
+                    ))
+                }
+              </ul>
             </div>
           }
 

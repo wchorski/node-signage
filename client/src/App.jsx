@@ -40,17 +40,17 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         {/* public routes */}
-        <Route path="/" element={<Home username='derik'/>} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/logout" element={<Logout />} />
-        <Route path="/signup" element={<Register />} />
+        <Route path="/"                       element={<Home username='derik'/>} />
+        <Route path="/login"                  element={<Login />} />
+        <Route path="/logout"                 element={<Logout />} />
+        <Route path="/signup"                 element={<Register />} />
         {/* <Route path="/linkpage" element={<LinkPage />} /> */}
-        <Route path="/unauthorized" element={<Unauthorized />} />
-        <Route path="/slides" element={<Slides />} />
-        <Route path="/create" element={<SlideCreator />} />
-        <Route path="/slides/editor/:_id" element={<SlideEditor />} />
+        <Route path="/unauthorized"           element={<Unauthorized />} />
+        <Route path="/slides"                 element={<Slides />} />
+        <Route path="/create"                 element={<SlideCreator />} />
+        <Route path="/slides/editor/:_id"     element={<SlideEditor />} />
         <Route path="/slides/:collectionName" element={<Collection />} />
-        <Route path="/player" element={<Player />} />
+        <Route path="/player"                 element={<Player />} />
         <Route path="/player/:collectionName" element={<CollectionPlayer />} />
 
         {/* we want to protect these routes */}
