@@ -129,7 +129,7 @@ const Slides = () => {
                 <li key={_id}>
                   {/* <button className='deleteBtn'>delete</button> */}
                   <input className='toggle' id={`check_${_id}`} type="checkbox" defaultChecked={cat.isactive} onClick={(e) => collectionActive(cat.collectionName, e.target.checked, cat._id)}/>
-                  <label for={`check_${_id}`}>Collection {cat.collectionName} toggle</label>
+                  <label for={`check_${_id}`}></label>
                   <Link to={`/slides/${cat.collectionName}`}> {cat.collectionName} </Link>
                 </li>
               ))}

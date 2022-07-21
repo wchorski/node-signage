@@ -3,13 +3,17 @@ import styled from 'styled-components'
 
 export const StyledCollectionsEditor = styled.div`
 
-  border: solid white 3px;
+  border-bottom: solid #ffffff69 3px;
   padding: 1rem;
 
   .col-list{
     li{
+      margin-bottom: 0.2rem;
+      display: flex;
+
       label{
         display: none;
+        margin: 0;
       }
     }
   }
@@ -20,6 +24,19 @@ export const StyledCollectionsEditor = styled.div`
     cursor: pointer;
     left: -9000px;
     top: -9000px;
+
+    :disabled + label {
+      color: #68346873;
+
+      ::before{
+        color: #68346873;
+        background-color: #68346873;
+      }
+      ::after{
+        color: #68346873;
+        background-color: #68346873;
+      }
+    }
   }
 
   input[type="checkbox"].toggle + label {
@@ -38,11 +55,15 @@ export const StyledCollectionsEditor = styled.div`
     }
 
     ::after{
-      content: "";
+      content: "\\2715";
       width: 2em;
       height: 2em;
       border-radius: 1em;
       background-color: grey;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
       position: absolute;
       transition: 200ms ease-in-out;
     }
@@ -53,6 +74,8 @@ export const StyledCollectionsEditor = styled.div`
     color: var(--color-highlight);
 
     ::after{
+      content: "\\2713";
+      color: black;
       transform: translateX(115%);
       background-color: var(--color-highlight);
     }
@@ -66,6 +89,9 @@ export const StyledCollectionsEditor = styled.div`
 
     input{
       border-radius: 10px 0 0 10px;
+      border: solid var(--color-highlight) 3px;
+      box-shadow: inset #00000069 3px 3px 4px;
+      padding: .5rem;
     }
 
     button{
