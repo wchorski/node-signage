@@ -6,17 +6,22 @@ import { FaForward } from 'react-icons/fa'
 import { IoIosTimer } from 'react-icons/io'
 
 import axios from '../api/axios'
+import { StyledPlayerSettings } from '../styles/PlayerSettings.styled'
 
 const PlayerSettings = () => {
 
   const controller = new AbortController();
 
-  const [settingsState, setsettingsState]     = useState([{}]);
+  const [settingsState, setsettingsState]   = useState([{}]);
+  const [showTimer, setshowTimer]           = useState(false);
+  const [timerState, settimerState]         = useState();
 
   const getSettings = async () => {
     try{
       const res = await axios.get('/settings')
       setsettingsState(res.data)
+      setshowTimer(res.data[0].autoAdv)  
+      settimerState(res.data[0].advSpeed)
 
     } catch (err) {
       console.error(err);
@@ -28,6 +33,8 @@ const PlayerSettings = () => {
     // console.log(onOff + " : " + _id);
 
     try{
+      setshowTimer(!showTimer)
+      
       const data = {autoAdv: onOff}
       let res = await axios.patch(`/settings/${_id}`, JSON.stringify({...data}),{
         headers: { 'Content-Type': 'application/json'},
@@ -38,12 +45,20 @@ const PlayerSettings = () => {
     }
   }
 
-  const updateAdvSpeed = async (speed, _id) => {
+  const incrementSpeed = (int) => {
+    // settimerState(prev => prev + int)
+    settimerState(timerState + int)
+    console.log(timerState);
+    updateAdvSpeed(timerState)
+  }
+
+  const updateAdvSpeed = async (speed) => {
     // console.log(speed + " : " + _id);
 
     try{
       const data = {advSpeed: speed}
-      let res = await axios.patch(`/settings/${_id}`, JSON.stringify({...data}),{
+
+      let res = await axios.patch(`/settings/${settingsState[0]._id}`, JSON.stringify({...data}),{
         headers: { 'Content-Type': 'application/json'},
       })
 
@@ -63,36 +78,51 @@ const PlayerSettings = () => {
 
 
   return (
-    <>
+
+    <StyledPlayerSettings>
       <h2>Player Settings</h2>
 
       {settingsState && 
 
         <article className='settings'>
           <div className="form-item">
-            <FaForward />
             <input 
               type="checkbox" 
-              className="chbx" 
+              className="toggle" 
+              id='chbx-autoforward'
               defaultChecked={settingsState[0].autoAdv} 
               onClick={(e) => updateAutoAdv(e.target.checked, settingsState[0]._id)} 
             />
-            <label>Auto Advance On / Off</label>
+            <label htmlFor='chbx-autoforward' >Auto Advance On / Off</label>
           </div>
 
-          <div className="form-item">
-            <IoIosTimer />
-            <input 
-              type="number" 
-              defaultValue={settingsState[0].advSpeed}
-              onClick={(e) => updateAdvSpeed(e.target.value, settingsState[0]._id)}
-            />
-            <label>Slide Advance Speed</label>
-          </div>
+          {showTimer && 
+            <div className="form-item timer">
+              <IoIosTimer />
+              <input 
+                type="number" 
+                // defaultValue={settingsState[0].advSpeed}
+                value={timerState}
+                
+                onClick={(e) => updateAdvSpeed(e.target.value, settingsState[0]._id)}
+              />
+              {/* <p>{timerState}</p> */}
+              <span 
+                className='input-button add' 
+                onClick={e => incrementSpeed(1)}   
+              > + 
+              </span>
+              <span 
+                className='input-button remove' 
+                onClick={e => incrementSpeed(-1)}   
+              > - 
+              </span>
+            </div>
+          }
 
         </article>
       }
-    </>
+    </StyledPlayerSettings>
   )
 }
 

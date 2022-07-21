@@ -12,13 +12,12 @@ export const StyledCollectionsEditor = styled.div`
       display: flex;
 
       label{
-        display: none;
         margin: 0;
       }
     }
   }
 
-  input[type="checkbox"].toggle {
+  /* input[type="checkbox"].toggle {
     opacity: .1;
     position: absolute;
     cursor: pointer;
@@ -79,7 +78,7 @@ export const StyledCollectionsEditor = styled.div`
       transform: translateX(115%);
       background-color: var(--color-highlight);
     }
-  }
+  } */
 
 
   form{
