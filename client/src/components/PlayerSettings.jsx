@@ -7,6 +7,7 @@ import { IoIosTimer } from 'react-icons/io'
 
 import axios from '../api/axios'
 import { StyledPlayerSettings } from '../styles/PlayerSettings.styled'
+import { GiMetronome } from 'react-icons/gi'
 
 const PlayerSettings = () => {
 
@@ -68,38 +69,56 @@ const PlayerSettings = () => {
   }
 
   useEffect(() => {
+
     getSettings()
+
+    const metronome = setInterval(() => {
+      setSecondsState(prev => prev + 1);
+      setmetronomeState(prev => !prev)
+      // console.log(secondsState);
+    }, 1000);
+    
 
     return () => {
       // isMounted = false;
+      clearInterval(metronome)
       controller.abort();
     }
   }, [])
 
+  useEffect(() => {
+    const slideTimer = setInterval(() => {
+      nextSlide()
 
-  const [setTimeOut, setsetTimeOut]              = useState(5)
+    }, timerState * 1000);
+
+    return () => {
+      clearInterval(slideTimer)
+    }
+  }, [timerState])
+
+  const [secondsState, setSecondsState] = useState(1);
+  const [metronomeState, setmetronomeState] = useState(false)
   const [current, setCurrent]                    = useState(3)
-  const [activeSlides, setactiveSlides]          = useState([{title: 'one', color: 'red'}, {title: 'two', color: 'blue'}, {title: 'three', color: 'green'}]);
+  const [activeSlides, setactiveSlides]          = useState([{title: 'one', color: 'orange'}, {title: 'two', color: 'coral'}, {title: 'three', color: 'orangered'}]);
 
-  const nextSlide = () => { console.log((current + 1) + ' : ' + 3); setCurrent(current >= 3 - 1 ? 0                        : current + 1) }
+  const nextSlide = () => { console.log((current) + ' : ' + 3); setCurrent(prev => prev >= 3 -1  ? 0 : prev + 1 ) }
 
-  function delay(n){
+  // function delay(n){
+  //   return new Promise(function(resolve){
+  //     setTimeout(resolve,n*1000);
+  //   });
+  // }
+  // async function autoAdv(speed){
+  //   await delay(speed)
+  //   nextSlide()
+  //   // console.log('autoAdv triggered');
+  // }
+  // autoAdv(timerState)
 
-    setsetTimeOut = setTimeout(() => {
-      
-    })
 
-    // return new Promise(function(resolve){
-    //   setTimeout(resolve,n*1000);
-    // });
-  }
-  async function autoAdv(speed){
-    await delay(speed)
-    nextSlide()
-    console.log('autoAdv triggered');
-  }
+  
 
-  autoAdv(timerState)
 
 
   return (
@@ -123,7 +142,7 @@ const PlayerSettings = () => {
 
           {showTimer && 
             <div className="form-item timer">
-              <IoIosTimer />
+              <IoIosTimer className='iconTimer'/>
               <input 
                 type="number" 
                 // defaultValue={settingsState[0].advSpeed}
@@ -143,6 +162,16 @@ const PlayerSettings = () => {
               > - 
               </span>
 
+              {metronomeState && (
+                <div className="metronome">
+                  <GiMetronome />
+                </div>
+              )}
+              {!metronomeState && (
+                <div className="metronome">
+                  <GiMetronome style={{transform: "scaleX(-1)"}} />
+                </div>  
+              )}
 
               <ul className="slid-list">
                 {

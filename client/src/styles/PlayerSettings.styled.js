@@ -23,6 +23,10 @@ export const StyledPlayerSettings = styled.div`
     svg{
       color: var(--color-highlight);
       font-size: 50px;
+      position: block;
+    }
+
+    .iconTimer{
       position: absolute;
     }
 
@@ -85,32 +89,32 @@ export const StyledPlayerSettings = styled.div`
       }
     }
 
-    .animPreview{
-      border: solid white 1px;
-      position: relative;
+    .slid-list{
+      margin-top: 1em;
+    }
 
-      
-      .slide{
-        background-color: blue;
-        border: dotted red 1px;
-        height: 30px;
-        width: 100%;
 
-        padding: 1rem;
-        margin: 5px;
 
-        position: absolute;
+    .slide{
+      background-color: blue;
+      border: dotted white 1px;
+      /* height: 30px;
+      width: 100%; */
 
-        display: none;
+      padding: 1rem;
+      margin: 5px;
 
-        p{
-          text-align: center;
-        }
+      position: absolute;
+
+      display: none;
+
+      p{
+        text-align: center;
       }
+    }
 
-      .active{
-        display: flex;
-      }
+    .active{
+      display: flex;
     }
   }
   
