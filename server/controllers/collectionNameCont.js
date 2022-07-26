@@ -8,6 +8,17 @@ exports.getAll = async (req, res) => {
   res.json(models);
 }
 
+exports.getOne = async (req, res) => {
+  try{
+    const model = await Model.findById(req.params.id)
+    res.status(200).json(model)
+    
+  } catch (err) {
+    console.error(err);
+    res.status(400).json({status: 'failed col getOne',})
+  }
+}
+
 exports.create = async (req, res) => {
   try{
     const newModel = await Model.create({

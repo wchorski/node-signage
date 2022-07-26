@@ -75,11 +75,12 @@ const CollectionPreview = (props) => {
   return (
     <>
       <StyledCollectionPreview>
-        <h3>{props.collectionName}</h3>
-        <Link to={`/player/${props.collectionName}`} className="btnPlayer"><AiFillPlaySquare /> Play Collection</Link>
-        <input type="checkbox" />
+        <div className="col-headr">
+          <h3>{props.collectionName}</h3>
+          <Link to={`/player/${props.collectionName}`} className="btnPlayer"><AiFillPlaySquare /> Play Collection</Link>
+        </div>
 
-        <Link to={`/slides/${props.collectionName}`}>
+        <Link to={`/slides/collection/${props._id}`}>
           <div className="collectionBlock">
 
             {catNameFilter(slidesState)}

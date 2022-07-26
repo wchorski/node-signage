@@ -1,4 +1,5 @@
 @import './styles/sass/toggle.scss';
+// @import './styles/sass/colllection-page.scss';
 
 
 
@@ -10,12 +11,14 @@ code {
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
 :root{
-  --color-base: #2f2623;
-  --color-highlight: #efaf65;
-  --color-alt: #59d1c3;
+  --color-base: #283535;
+  --color-bg: #223232df;
+  --color-highlight: #93c0bc;
+  --color-alt: #d5c790;
   --color-text: hsl(0, 0%, 100%);
   --width-cont: 1800px;
 }
+$color-bg: #1b2525;
 
 * {
     margin: 0;
@@ -32,9 +35,9 @@ html {
 
 body {
     /* min-height: 100vh; */
-    background-color: var(--color-base);
+    // background-color: var(--color-bg);
     background-image: 
-      linear-gradient(0deg, rgba(34, 32, 9, 0.842), rgba(36, 13, 7, 0.863)),
+      linear-gradient(0deg, var(--color-base), var(--color-bg)),
       url("../public/tile/connectwork.webp");
     background-repeat: repeat;
 
@@ -268,7 +271,8 @@ ul{
   border-radius: 10px;
   display: block;
   padding: .1rem;
-  margin-bottom: 1rem;
+  padding-right: .4rem;
+  // margin-bottom: 1rem;
   max-width: 10em;
 }
 .btnPlayer svg{
@@ -502,15 +506,17 @@ ul{
   user-select: none;
 }
 .slide{
-  /* opacity: 1; */
-  transition-duration: 1s ease;
-  transform: scale(1.3);
+  // opacity: .9;
+  transition: 3s ease;
+  transform: scale(1.01);
   
 }
 .slide.active{
-  /* opacity: 1; */
-  transition-duration: 1s;
-  transform: scale(1.0);
+  animation: anim-01 3s;
+
+  // opacity: 1;
+  // transition: 3s ease;
+  // transform: scale(1.0);
 }
 /* interactive slider END*/
 
@@ -518,6 +524,15 @@ ul{
 .slidecreator{
   border: dotted white 1px;
   display: flex;
+}
+
+@keyframes anim-01{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
 }
 
 /* * CollectionEditor */
@@ -529,3 +544,5 @@ ul{
   transform: scale(2);
   margin: 0 .5rem;
 }
+
+@import './styles/sass/colllection-page.scss';

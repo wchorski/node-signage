@@ -54,7 +54,7 @@ const Navbar = () => {
               <nav className="sub">
                 <ul>
                   {/* <li><input type="text" placeholder="search..."/> <button className="btnSearch"><BiSearchAlt /> </button></li> */}
-                  {username 
+                  {/* {username 
                     ? 
                       <li className='userCred'><RiUser5Line /> 
                         <span> {username} </span> 
@@ -63,7 +63,7 @@ const Navbar = () => {
                     : 
                       <Link to="/login" className="userCred">Login</Link>
 
-                  }
+                  } */}
                 </ul>
               </nav>
             </div>

@@ -49,7 +49,8 @@ function App() {
         <Route path="/slides"                 element={<Slides />} />
         <Route path="/create"                 element={<SlideCreator />} />
         <Route path="/slides/editor/:_id"     element={<SlideEditor />} />
-        <Route path="/slides/:collectionName" element={<Collection />} />
+        {/* <Route path="/slides/:collectionName" element={<Collection />} /> */}
+        <Route path="/slides/collection/:_id" element={<Collection />} />
         <Route path="/player"                 element={<Player />} />
         <Route path="/player/:collectionName" element={<CollectionPlayer />} />
 

@@ -100,7 +100,7 @@ const PlayerSettings = () => {
   const [secondsState, setSecondsState] = useState(1);
   const [metronomeState, setmetronomeState] = useState(false)
   const [current, setCurrent]                    = useState(3)
-  const [activeSlides, setactiveSlides]          = useState([{title: 'one', color: 'orange'}, {title: 'two', color: 'coral'}, {title: 'three', color: 'orangered'}]);
+  const [activeSlides, setactiveSlides]          = useState([{title: 'slide one', color: '#8dc3bf'}, {title: 'slide two', color: '#7aa19e'}, {title: 'slide three', color: '#4c6261'}]);
 
   const nextSlide = () => { console.log((current) + ' : ' + 3); setCurrent(prev => prev >= 3 -1  ? 0 : prev + 1 ) }
 
@@ -125,6 +125,7 @@ const PlayerSettings = () => {
 
     <StyledPlayerSettings>
       <h2>Player Settings</h2>
+      <label htmlFor="">change and preview slide advance tempo</label>
 
       {settingsState && 
 

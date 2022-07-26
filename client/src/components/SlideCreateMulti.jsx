@@ -4,10 +4,10 @@ import {useNavigate, useParams } from 'react-router-dom'
 import { uploadFile } from '../helpers/SlideUploadService';
 import { StyledDropZone } from '../styles/DropZone.styled';
 
-const SlideCreateMulti = () => {
+const SlideCreateMulti = (props) => {
 
   const navigate = useNavigate();
-  let { collectionName } = useParams()
+  let { collectionName, _id } = useParams()
   const controller = new AbortController();
 
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -42,7 +42,7 @@ const SlideCreateMulti = () => {
     let vals = {
       author: '',
       title: '',
-      collectionName: collectionName,
+      collectionName: props.collectionName,
       color: '',
       content: '',
       template: 1,
@@ -79,6 +79,11 @@ const SlideCreateMulti = () => {
       
       window.location.reload()
     }
+
+    useEffect(() => {
+
+      console.log(props.collectionName);
+    }, [])
   
   return (
     <>

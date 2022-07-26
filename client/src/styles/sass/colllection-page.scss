@@ -1,0 +1,31 @@
+div.col-headr{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 2em;
+
+  h1, h3{
+    margin-right: 1rem;
+  }
+
+  button.btnDelete{
+    background: null;
+    border: solid rgba(255, 255, 255, 0.124) 1px;
+    border-radius: 15px;
+    padding: .8em;
+    margin-left: auto;
+
+    &:hover{
+      background: red;
+
+      svg{
+        color: white;
+      }
+    }
+
+    svg{
+      color: var(--color-highlight);
+      font-size: 50px;
+    }
+  }
+}

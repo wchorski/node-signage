@@ -130,7 +130,7 @@ const Slides = () => {
                   {/* <button className='deleteBtn'>delete</button> */}
                   <input className='toggle' id={`check_${_id}`} type="checkbox" defaultChecked={cat.isactive} onClick={(e) => collectionActive(cat.collectionName, e.target.checked, cat._id)}/>
                   <label for={`check_${_id}`}></label>
-                  <Link to={`/slides/${cat.collectionName}`}> {cat.collectionName} </Link>
+                  <Link to={`/slides/collection/${cat._id}`}> {cat.collectionName} </Link>
                 </li>
               ))}
             </ul>
@@ -172,9 +172,9 @@ const Slides = () => {
       </section>
 
       <section className='collections'>
-        {catsState.map((cats, _id) => (
+        {catsState.slice(0).reverse().map((cat, _id) => (
           <div key={_id}>
-            <CollectionPreview collectionName={cats.collectionName}/>
+            <CollectionPreview collectionName={cat.collectionName} _id={cat._id}/>
           </div>
         ))}
       </section>
