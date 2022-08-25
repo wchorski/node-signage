@@ -5,6 +5,10 @@ import axios from '../api/axios'
 import Slide from '../components/Slide'
 import { StyledPlayer } from '../styles/Player.styled'
 
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 
 const SlidePlayer = () => {
@@ -16,15 +20,18 @@ const SlidePlayer = () => {
   //* Slides data
   const [slidesState, setSlides]                        = useState([]);
   const [activeSlides, setactiveSlides]                 = useState([]);
-  const [slidesFilteredLength, setslidesFilteredLength] = useState(3);
   const [catsState, setCatsState]                       = useState([]);
+  const [sliderSettings, setsliderSettings]             = useState({})
 
-  const [settingsState, setsettingsState]     = useState([{}]);
+  const [settingsState, setsettingsState]     = useState([]);
   const getSettings = async () => {
     try{
       const res = await axios.get('/settings')
-      setsettingsState(res.data)
+      const data = res.data
+      // const data = [{autoAdv: true}, {autoAdv: false}]
 
+      setsettingsState(data)
+      
     } catch (err) {
       console.error(err);
     } 
@@ -58,47 +65,56 @@ const SlidePlayer = () => {
   }
 
   useEffect(() => {
+
+    getSettings()
+    getSlides()
+    getCats()
+
+    const refresh = setInterval(() => {
+      console.log('slideplayer refresh slides');
+
+      getSettings()
+      getSlides()
+      getCats()
+    }, 8000)
+
+  
+    return () => {
+      clearInterval(refresh)
+      controller.abort()
+    }
+
+  }, [])
+
+  useEffect(() => {
     filterSlides()
 
   }, [slidesState, catsState])
 
+
+
   useEffect(() => {
 
-    getSettings()
-    getSlides();
-    getCats();
 
-    // setInterval(() => {
-    //   getSlides();
-    // }, 30000)
+    if(settingsState.length === 0 || !settingsState) return
 
-    return () => {
-      // isMounted = false;
-      controller.abort();
+    console.log('useEffect w/ settingsState dep');
+
+    const newSliderSettings = {
+      fade: true,
+      dots: true,
+      infinite: true,
+      autoplay: settingsState[0].autoAdv,
+      autoplaySpeed: 1000 * settingsState[0].advSpeed,
+      speed: 300,
+      slidesToShow: 1,
+      slidesToScroll: 1
     }
-  }, [])
 
+    setsliderSettings(newSliderSettings)
+    
 
-  //* Slide controller
-  const [current, setCurrent] = useState(0)
-
-  const nextSlide = () => { console.log((current + 1) + ' : ' + slidesFilteredLength); setCurrent(current >= slidesFilteredLength - 1 ? 0                        : current + 1) }
-  const prevSlide = () => { console.log((current + 1) + ' : ' + slidesFilteredLength); setCurrent(current <=                        0 ? slidesFilteredLength - 1 : current - 1) }
-
-  function delay(n){
-    return new Promise(function(resolve){
-        setTimeout(resolve,n*1000);
-    });
-  }
-  async function autoAdv(speed){
-    await delay(speed)
-    nextSlide()
-    console.log('autoAdv triggered');
-  }
-
-  if(settingsState[0].autoAdv){
-    autoAdv(settingsState[0].advSpeed)
-  } 
+  }, [settingsState])
 
 
   const filterSlides = () => {
@@ -113,34 +129,22 @@ const SlidePlayer = () => {
 
       fltrSlds.push(...filtered)
       setactiveSlides(fltrSlds)
-      setslidesFilteredLength(fltrSlds.length)
-
     })
   }
+
 
   return (
     <>
     <StyledPlayer className="slider">
-      <RiArrowLeftSLine  className='left-arrow'  onClick={prevSlide} />
-      <RiArrowRightSLine className='right-arrow' onClick={nextSlide} />
 
-      {/* //TODO get rid of this inline style later */}
-      <ul className='slider-list list--0' style={{flexDirection: "column"}}>
-
-
+      <Slider {...sliderSettings}>
         {
           activeSlides
             .map((slide, i ) => (
-              <li className={i === current ? 'slide active' : 'slide'} key= {i}>
-
-                { i === current && (
-                  <Slide {...slide} />
-                )}
-                
-              </li>
+              <Slide {...slide} key={i}/>
             ))
         }
-      </ul>
+      </Slider>
 
     </StyledPlayer>
     </>

@@ -3,10 +3,16 @@ import styled from 'styled-components'
 
 export const StyledPlayer = styled.div`
 
+  .slick-slide img{
+    margin: 0 auto;
+    width: 100vw;
+    height: 100vh;
+  }
+  
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  // border: dashed white 2px;
+  /* border: dashed white 2px; */
 
 
   .styledSlide{

@@ -124,7 +124,7 @@ export const StyledNavBar = styled.div`
       display: flex;
       align-items: center;
       
-
+s
 
       // svg{
       //   font-size: 40px;
@@ -132,7 +132,7 @@ export const StyledNavBar = styled.div`
       // }
 
       span{
-        font-size: 15px
+        font-size: 15px;
         color: grey;
         margin-right: 1rem;
       }
