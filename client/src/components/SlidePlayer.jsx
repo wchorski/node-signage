@@ -16,6 +16,7 @@ const SlidePlayer = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const controller = new AbortController();
+  const [isLoaded, setIsLoaded] = useState(false)
 
   //* Slides data
   const [slidesState, setSlides]                        = useState([]);
@@ -28,7 +29,6 @@ const SlidePlayer = () => {
     try{
       const res = await axios.get('/settings')
       const data = res.data
-      // const data = [{autoAdv: true}, {autoAdv: false}]
 
       setsettingsState(data)
       
@@ -71,12 +71,14 @@ const SlidePlayer = () => {
     getCats()
 
     const refresh = setInterval(() => {
-      console.log('slideplayer refresh slides');
+      // console.log('slideplayer refresh slides');
+      // TODO make seamless refresh 
+      // setIsLoaded(false)
 
       getSettings()
       getSlides()
       getCats()
-    }, 8000)
+    }, 15000)
 
   
     return () => {
@@ -98,7 +100,7 @@ const SlidePlayer = () => {
 
     if(settingsState.length === 0 || !settingsState) return
 
-    console.log('useEffect w/ settingsState dep');
+    // console.log('useEffect w/ settingsState dep');
 
     const newSliderSettings = {
       fade: true,
@@ -129,6 +131,7 @@ const SlidePlayer = () => {
 
       fltrSlds.push(...filtered)
       setactiveSlides(fltrSlds)
+      setIsLoaded(true)
     })
   }
 
@@ -136,15 +139,19 @@ const SlidePlayer = () => {
   return (
     <>
     <StyledPlayer className="slider">
-
-      <Slider {...sliderSettings}>
-        {
-          activeSlides
-            .map((slide, i ) => (
-              <Slide {...slide} key={i}/>
-            ))
-        }
-      </Slider>
+      {isLoaded && (
+        <Slider {...sliderSettings}>
+          {
+            activeSlides
+              .map((slide, i ) => (
+                <Slide {...slide} key={i}/>
+              ))
+          }
+        </Slider>
+      )}
+      {!isLoaded && (
+        <h1>Loading...</h1>
+      )}
 
     </StyledPlayer>
     </>
