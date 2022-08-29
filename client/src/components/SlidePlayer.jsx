@@ -139,7 +139,7 @@ const SlidePlayer = () => {
   return (
     <>
     <StyledPlayer className="slider">
-      {isLoaded && (
+      {isLoaded && sliderSettings !== undefined && (
         <Slider {...sliderSettings}>
           {
             activeSlides
