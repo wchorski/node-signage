@@ -108,9 +108,11 @@ const SlidePlayer = () => {
       infinite: true,
       autoplay: settingsState[0].autoAdv,
       autoplaySpeed: 1000 * settingsState[0].advSpeed,
-      speed: 300,
+      speed: 800,
       slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      pauseOnFocus: false,
+      pauseOnHover: false,
     }
 
     setsliderSettings(newSliderSettings)
@@ -139,7 +141,8 @@ const SlidePlayer = () => {
   return (
     <>
     <StyledPlayer className="slider">
-      {isLoaded && sliderSettings !== undefined && (
+
+      {isLoaded && Object.values(sliderSettings).length >= 1 && (
         <Slider {...sliderSettings}>
           {
             activeSlides
