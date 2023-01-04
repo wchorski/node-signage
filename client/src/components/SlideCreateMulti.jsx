@@ -29,7 +29,12 @@ const SlideCreateMulti = (props) => {
     setaddButtonState(true)
     console.log('selectedFiles: ' + URL.createObjectURL(selectedFiles[0]));
   }, [])
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({onDrop, multiple: true})
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({onDrop, multiple: true, accept: {
+    'image/jpeg': [],
+    'image/png': [],
+    'image/gif': [],
+    'video/mp4': []
+  }})
   const dropFiles = selectedFiles?.map((file, i) => (
     <div className='imgFrame' key={i}>
       <img src={file.preview} style={{width: "200px"}} alt="image preview" />

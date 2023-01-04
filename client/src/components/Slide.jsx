@@ -47,7 +47,7 @@ const Slide = (props) => {
         <div className={`template--${props.template}`}>
           <h2>{props.title}</h2> 
 
-          {props.content != '' && 
+          {props.content !== '' && 
             <>
               <div className='slide-content'>
                 <p>{props.content}</p>  
