@@ -1,3 +1,6 @@
+> [!note] legacy project
+> I've moved reconstructed this project with NextJS. Repo found @ [https://github.com/wchorski/network-bulletin](https://github.com/wchorski/network-bulletin)
+
 # node-signage ♐ 
 Digital Signage on a MERN stack
 <br/>
